@@ -22,18 +22,18 @@ class Soldier:
         self.bandages = bandages
         self.sabre = sabre
         
-        def SHOPPING(self):
-            print("Welcome to the shop! My name's Bubbles, and Im selling a lotta good stuff here! Food: 3 shillings, Bandages: 3 shillings, Sabre: 5 shillings!")
-            RESPONSE = input("What do you want to buy?")
-            if "Food" in RESPONSE:
-                print("You purchased food!")
-                self.food += 1
-                self.shillings -= 3
-            elif "Bandages" in RESPONSE:
-                print("You purchased one bandage!")
-                self.bandage += 1
-                self.shillings -= 3
-            elif "Sabre" in RESPONSE:
-                print("You purchased one Sabre!")
-                self.sabre += 1
-                self.shillings -= 5
+    def SHOPPING(self):
+        print("Welcome to the shop! My name's Bubbles, and Im selling a lotta good stuff here! Food: 3 shillings, Bandages: 3 shillings, Sabre: 5 shillings!")
+        RESPONSE = input("What do you want to buy?")
+        if "Food" in RESPONSE:
+            print("You purchased food!")
+            self.food += 1
+            self.shillings -= 3
+        elif "Bandages" in RESPONSE:
+            print("You purchased one bandage!")
+            self.bandage += 1
+            self.shillings -= 3
+        elif "Sabre" in RESPONSE:
+            print("You purchased one Sabre!")
+            self.sabre += 1
+            self.shillings -= 5
