@@ -1,3 +1,5 @@
+import random
+
 class Soldier: 
     def __init__(self, name, hunger=100, health=100, fun=100, ammo=30, living = True): 
         self.name = name
@@ -10,6 +12,14 @@ class Soldier:
         self.fun -= 10
         self.hunger -= 20
     def dec(self): 
+        if self.fun <30: 
+            print("You're having fun!")
+        if self.hunger>30: 
+            print("You're full")
+        if self.health >30: 
+            print("You're surviving so far...")
+        if self.ammo >0: 
+            print(f"You have {self.ammo}")
         if self.fun >=30: 
             print("You're getting bored!")
         if self.hunger >=30: 
@@ -33,3 +43,8 @@ Name = input("What do you call yourself, sir?")
 character = Soldier(Name)
 
 while character.living == True: 
+    character.dec()
+    Userinput = input(f"You're told to stop the patriots at Lexington and Concord. What would you like to do?")
+    Userinput =Userinput.lower()
+    print("find supplies") 
+    print("find patriots")
