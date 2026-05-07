@@ -1,7 +1,7 @@
 import random
 
 class Soldier: 
-    def __init__(self, name, hunger=100, health=100, fun=100, ammo=30, shillings = 0, living = True): 
+    def __init__(self, name, hunger=100, health=100, fun=100, ammo=30, shillings = 0, food = 0, bandages = 0, sabre = 0, living = True): 
         self.name = name
         self.hunger=hunger
         self.health=health
@@ -9,6 +9,10 @@ class Soldier:
         self.ammo=ammo
         self.shillings=shillings
         self.living=living
+        self.food = food
+        self.bandages = bandages
+        self.sabre = sabre
+        
     def byebye(self): 
         self.fun -= 10
         self.hunger -= 20
