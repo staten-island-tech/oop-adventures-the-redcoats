@@ -21,17 +21,12 @@ class Soldier:
             print("You're surviving so far...")
         if self.ammo >0: 
             print(f"You have {self.ammo}")
-        if self.fun >=30: 
-            print("You're getting bored!")
-        if self.hunger >=30: 
-            print("You're getting hungry!")
-        if self.health>=50: 
         if self.fun <=30: 
             print("You're getting bored!")
-        if self.hunger<=30: 
+        if self.hunger <=30: 
             print("You're getting hungry!")
         if self.health<=50: 
-            print("You're low on health!")
+            print("You're health is {self.health} health")
         if self.ammo == 0: 
             print("You have no ammo!")
     def shoot(self): 
