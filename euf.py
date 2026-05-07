@@ -13,7 +13,7 @@ class Soldier:
         self.fun -= 10
         self.hunger -= 20
     def dec(self): 
-        if self.fun <30: 
+        if self.fun >30: 
             print("You're having fun!")
         if self.hunger>30: 
             print("You're full")
@@ -23,10 +23,13 @@ class Soldier:
             print(f"You have {self.ammo}")
         if self.fun <=30: 
             print("You're getting bored!")
+            self.health -=10
+            self.hunger-=20
         if self.hunger <=30: 
             print("You're getting hungry!")
+            self.health -=30
         if self.health<=50: 
-            print("You're health is {self.health} health")
+            print(f"You have {self.health} health")
         if self.ammo == 0: 
             print("You have no ammo!")
     def shoot(self): 
@@ -42,13 +45,16 @@ class Soldier:
     def find(self): 
         self.shillings +=5
         self.fun +=10
+    def death(self): 
+        if self.health == 0: 
+            self.living == False
 
 Name = input("What do you call yourself, sir?")
 character = Soldier(Name)
-
+print("You're told to stop the patriots at Lexington and Concord by your commander.")
+kills = 0
 while character.living == True: 
     character.dec()
-    print("You're told to stop the patriots at Lexington and Concord by your commander.")
     Userinput = input(f"What would you like to do?")
     Userinput =Userinput.lower()
     if "find supplies" in Userinput: 
@@ -63,7 +69,7 @@ while character.living == True:
             character.fun +=20
     if "find patriots" in Userinput: 
         x = random.randint(1, 20)
-        print("You've found {x}!")
+        print(f"You've found {x}!")
         weaponchoice = input(f"Would you like to kill using a musket or sabre?")
         if "musket" in weaponchoice: 
             shoot = input(f"Press x to shoot!")
@@ -85,3 +91,5 @@ while character.living == True:
         elif x >=5: 
             print("You've found nothing...")
             character.byebye()
+    if kills == 20 and character.shillings == 30: 
+        
