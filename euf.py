@@ -50,7 +50,7 @@ class Soldier:
         self.shillings +=5
         self.fun +=10
     def death(self): 
-        if self.health == 0: 
+        if self.health <= 0: 
             self.living == False
             print("You have died!")
 
