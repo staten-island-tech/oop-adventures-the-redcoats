@@ -36,7 +36,7 @@ class Soldier:
             self.sabre += 1
             self.shillings -= 5
         
-    def tax(self): 
+    def byebye(self): 
         self.fun -= 10
         self.hunger -= 20
     def dec(self): 
@@ -73,6 +73,13 @@ class Soldier:
         self.shillings +=5
         self.fun +=10
     def hide(self):
+        print("You look for a place to hide...") 
+        character.byebye()
+        x = random.randint(1, 20)
+        if x <15: 
+            print("You crouch behind a bush...like the coward you are!") 
+        elif x >= 15: 
+            print("You were caught trying to hide, you coward!")
         self.fun -= 10
     def death(self): 
         if self.health <= 0: 
@@ -98,7 +105,6 @@ if "play" in level1:
             if e>=15: 
                 print("You've looted some supplies the Patriots stole!")
                 character.find()
-                character.fun +=20
         if "find patriots" in Userinput: 
             e = random.randint(1, 5)
             print(f"You've found {x}!")
