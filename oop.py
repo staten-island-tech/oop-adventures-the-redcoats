@@ -147,10 +147,10 @@ if "play" in level4:
         if "hide" in Userinput: 
             print("You look for a place to hide...") 
             character.byebye()
-            e = random.randint(1, 20)
-            if e <15: 
+            x = random.randint(1, 20)
+            if x <15: 
                 print("You crouch behind a bush...like the coward you are!") 
-            if e>=15: 
+            elif x >= 15: 
                 print("You were caught trying to hide, you coward!")
                 character.hide()
         if "attack" in Userinput or "fight" in Userinput: 
