@@ -80,6 +80,36 @@ class Soldier:
             print("You've looted some supplies the Patriots stole!")
             self.find()
             self.fun +=20
+    def findpatriots(self): 
+        e = random.randint(0, 5)
+        if e >0: 
+            print(f"You've found {e}!")
+            weaponchoice = input(f"Would you like to kill using a musket or sabre?")
+            if "musket" in weaponchoice: 
+                shoot = input(f"Press x to shoot!")
+                if "x" in shoot: 
+                    x = random.randint(1, 20)
+                    if x <=10: 
+                        print("Oh no! You missed! Now they've shot you!")
+                        self.shoot()
+                        self.damage()
+                        self.byebye()
+                    elif x >10: 
+                        print("You've shot them!") 
+                        kills += e
+                        self.shoot()
+        elif e == 0: 
+            print("You've found none...")
+            self.byebye()
+    def lootandplunder(self): 
+        self.byebye()
+        x = random.randint(1, 20)
+        if x <5: 
+            print("You've found some money!")
+            self.find()
+        elif x >=5: 
+            print("You've found nothing...")
+            self.byebye()
 
 Name = input("What do you call yourself, sir?")
 character = Soldier(Name)
@@ -94,35 +124,9 @@ if "play" in level1:
         if "find supplies" in Userinput: 
             character.findsupplies()
         elif "find patriots" in Userinput: 
-            e = random.randint(0, 5)
-            if e >0: 
-                print(f"You've found {e}!")
-                weaponchoice = input(f"Would you like to kill using a musket or sabre?")
-                if "musket" in weaponchoice: 
-                    shoot = input(f"Press x to shoot!")
-                    if "x" in shoot: 
-                        x = random.randint(1, 20)
-                        if x <=10: 
-                            print("Oh no! You missed! Now they've shot you!")
-                            character.shoot()
-                            character.damage()
-                            character.byebye()
-                        elif x >10: 
-                            print("You've shot them!") 
-                            kills += e
-                            character.shoot()
-            elif e == 0: 
-                print("You've found none...")
-                character.byebye()
+            character.findpatriots()
         elif "loot and plunder" in Userinput:
-            character.byebye()
-            x = random.randint(1, 20)
-            if x <5: 
-                print("You've found some money!")
-                character.find()
-            elif x >=5: 
-                print("You've found nothing...")
-                character.byebye()
+            character.lootandplunder()
         if kills == 10 and character.shillings == 10: 
             level1 = "finished"
     if character.living == False: 
@@ -156,26 +160,7 @@ if "play" in level2:
                 character.find()
                 character.fun +=20
         if "find patriots" in Userinput: 
-            e = random.randint(0, 5)
-            if e >0: 
-                print(f"You've found {e}!")
-                weaponchoice = input(f"Would you like to kill using a musket or sabre?")
-                if "musket" in weaponchoice: 
-                    shoot = input(f"Press x to shoot!")
-                    if "x" in shoot: 
-                        x = random.randint(1, 20)
-                        if x <=10: 
-                            print("Oh no! You missed! Now they've shot you!")
-                            character.shoot()
-                            character.damage()
-                            character.byebye()
-                        elif x >10: 
-                            print("You've shot them!") 
-                            kills += e
-                            character.shoot()
-            elif e == 0: 
-                print("You've found none...")
-                character.byebye()
+            character.findpatriots()
         if "bayonet charge" in Userinput2:
             print("The officer has commanded a charge! Give 'em hell boys!")
             character.byebye()
