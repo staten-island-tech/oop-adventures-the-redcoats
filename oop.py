@@ -72,6 +72,8 @@ class Soldier:
     def find(self): 
         self.shillings +=5
         self.fun +=10
+    def hide(self):
+        self.fun -= 10
     def death(self): 
         if self.health <= 0: 
             self.living == False
@@ -90,15 +92,15 @@ if "play" in level1:
         if "find supplies" in Userinput: 
             print("You go searching...") 
             character.byebye()
-            x = random.randint(1, 20)
-            if x <15: 
+            e = random.randint(1, 20)
+            if e <15: 
                 print("You've found nothing...") 
-            if x>=15: 
+            if e>=15: 
                 print("You've looted some supplies the Patriots stole!")
                 character.find()
                 character.fun +=20
         if "find patriots" in Userinput: 
-            x = random.randint(1, 5)
+            e = random.randint(1, 5)
             print(f"You've found {x}!")
             weaponchoice = input(f"Would you like to kill using a musket or sabre?")
             if "musket" in weaponchoice: 
@@ -136,25 +138,24 @@ print("Yorktown is going to be sieged by the Patriots! Defend Yorktown!")
 alivecomrades = 20
 deadcomrades = 0
 kills = 0
-level4 = input("Write play to begin the level.")
+level4 = input("Type 'play' to begin the level.")
 if "play" in level4: 
     while character.living == True: 
         character.dec()
         Userinput = input(f"What would you like to do?")
         Userinput =Userinput.lower()
-        if "find supplies" in Userinput: 
-            print("You go searching...") 
+        if "hide" in Userinput: 
+            print("You look for a place to hide...") 
             character.byebye()
-            x = random.randint(1, 20)
-            if x <15: 
-                print("You've found nothing...") 
-            if x>=15: 
-                print("You've looted some supplies the Patriots stole!")
-                character.find()
-                character.fun +=20
-        if "attack patriots" in Userinput: 
-            x = random.randint(1, 5)
-            print(f"You've found {x}!")
+            e = random.randint(1, 20)
+            if e <15: 
+                print("You crouch behind a bush...like the coward you are!") 
+            if e>=15: 
+                print("You were caught trying to hide, you coward!")
+                character.hide()
+        if "attack" in Userinput or "fight" in Userinput: 
+            e = random.randint(1, 5) 
+            print(f"You've found {e}!")
             weaponchoice = input(f"Would you like to kill using a musket or sabre?")
             if "musket" in weaponchoice: 
                 shoot = input(f"Press x to shoot!")
@@ -171,4 +172,4 @@ if "play" in level4:
         if kills == 30 and alivecomrades >= 15: 
             level1 = "finished"
 elif "finished" in level4: 
-    print("You've successfully completed your mission in Lexington and Concord!")
+    print("You've successfully defended Yorktown!")
