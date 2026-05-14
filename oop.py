@@ -22,20 +22,24 @@ class Soldier:
         self.sabre = sabre 
 
     def shopping(self):
-        print("Welcome to the shop! My name's Bubbles, and Im selling a lotta good stuff here! Food: 3 shillings, Bandages: 3 shillings, Sabre: 5 shillings!")
-        response = input("What do you want to buy?")
-        if "Food" in response:
-            print("You purchased food!")
-            self.food += 1
-            self.shillings -= 3
-        elif "Bandages" in response:
-            print("You purchased one bandage!")
-            self.bandage += 1
-            self.shillings -= 3
-        elif "Sabre" in response:
-            print("You purchased one Sabre!")
-            self.sabre += 1
-            self.shillings -= 5
+        print("Would you like to check out the shop?")
+        if "yes" in Userinput:
+            print("Welcome to the shop! My name's Bubbles, and Im selling a lotta good stuff here! Food: 3 shillings, Bandages: 3 shillings, Sabre: 5 shillings!")
+            response = input("What do you want to buy?")
+            if "Food" in response:
+                print("You purchased food!")
+                self.food += 1
+                self.shillings -= 3
+            elif "Bandages" in response:
+                print("You purchased one bandage!")
+                self.bandage += 1
+                self.shillings -= 3
+            elif "Sabre" in response:
+                print("You purchased one Sabre!")
+                self.sabre += 1
+                self.shillings -= 5
+        else: 
+            print("")
     def byebye(self): 
         self.fun -= 10
         self.hunger -= 5
@@ -244,14 +248,6 @@ while True:
     def finishedlevel4(self):
         print("You've successfully defended Yorktown!")
 
-    #shopping
-    """ while True:
-        print("Would you like to check out the shop?")
-        if "yes" in Userinput:
-            character.shopping()
-        else:
-            print("")
-            break """
 
 
     while True:
@@ -265,7 +261,7 @@ while True:
             while character.living == True: 
                 character.dec()
                 Userinput = input(f"What would you like to do?")
-                Userinput =Userinput.lower()
+                Userinput = Userinput.lower()
                 if "hide" in Userinput: 
                     character.hide()
                 elif "attack" in Userinput or "patriots" in Userinput: 
