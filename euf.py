@@ -213,6 +213,8 @@ while True:
             elif "loot and plunder" in Userinput:
                 character.loading()
                 character.lootandplunder()
+            elif "shop" in Userinput: 
+                character.shopping()
             if character.health <= 0: 
                 character.loading()
                 character.death()
