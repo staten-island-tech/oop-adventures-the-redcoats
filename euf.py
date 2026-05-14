@@ -77,6 +77,7 @@ class Soldier:
         self.fun += 20
     def death(self): 
         print("You have died and failed your mission...")
+        self.living == False
     def findsupplies(self): 
         print("You go searching...") 
         self.loading()
@@ -199,8 +200,8 @@ while True:
             break
         while character.living == True: 
             character.dec()
-            print(character.shillings)
-            print(character.kills)
+            print(f"{character.shillings} shillings")
+            print(f"{character.kills} kills")
             Userinput = input(f"What would you like to do? Loot and plunder, find supplies, or find patriots?")
             Userinput =Userinput.lower()
             if "find supplies" in Userinput: 
@@ -219,17 +220,19 @@ while True:
     else: 
         print("Invalid command.")  
 
+
 while True: 
     level2 = input("Write play to begin the level.")
     if level2 == "play": 
         character.resetstats()
         character.loading()
         if character.kills == 12 and character.shots == 15: 
-                character.finishedlevel2()
+            character.finishedlevel2()
+            break
         while character.living == True: 
             character.dec()
-            print(character.shillings)
-            print(character.kills)
+            print(f"{character.shillings} shillings")
+            print(f"{character.kills} kills")
             Userinput2 = input(f"What would you like to do? Man the canons, bayonet charge, or find patriots?")
             Userinput2 =Userinput2.lower()
             if "man the canons" in Userinput2: 
@@ -247,20 +250,20 @@ while True:
                 break
     else: 
         print("Invalid command.")  
-
-
+        
 while True: 
     level3 = input("Write play to begin the level.")
     if level3 == "play": 
         character.resetstats()
         character.loading()
         if character.kills == 40 and character.shots == 15: 
-                character.finishedlevel2()
+            character.finishedlevel2()
+            break
         while character.living == True: 
             character.dec()
-            print(character.shillings)
-            print(character.kills)
-            Userinput2 = input(f"What would you like to do? Man the canons, bayonet charge, or find patriots?")
+            print(f"{character.shillings} shillings")
+            print(f"{character.kills} kills")
+            Userinput2 = input(f"What would you like to do? Kill patriots, bayonet charge, or find patriots?")
             Userinput2 =Userinput2.lower()
             if "man the canons" in Userinput2: 
                 character.loading()
