@@ -19,27 +19,32 @@ class Soldier:
     def shopping(self):
         print("Welcome to the shop! My name's Bubbles, and Im selling a lotta good stuff here! Food: 3 shillings, Bandages: 3 shillings, Sabre: 5 shillings!")
         RESPONSE = input("What do you want to buy?")
-        if "Food" in RESPONSE:
+        RESPONSE =RESPONSE.lower()
+        if "food" in RESPONSE:
             if self.shillings >= 3: 
                 print("You purchased food!")
                 self.food += 1
                 self.shillings -= 3
             elif self.shillings <3: 
                 print("My apologies..you don't have the expense to buy it...")
-        elif "Bandages" in RESPONSE:
+        elif "bandages" in RESPONSE:
             if self.shillings >= 3: 
                 print("You purchased one bandage!")
                 self.bandage += 1
                 self.shillings -= 3
             elif self.shillings <3: 
                 print("My apologies..you don't have the expense to buy it...")
-        elif "Sabre" in RESPONSE:
+        elif "sabre" in RESPONSE:
             if self.shillings >=5: 
                 print("You purchased one Sabre!")
                 self.sabre += 1
                 self.shillings -= 5
             elif self.shillings <5: 
                 print("My apologies..you don't have the expense to buy it...")
+            elif self.sabre == 1: 
+                print("You have already bought this")
+        else: 
+            print("Sorry, that's not in the shop, try again")
     
     def loading(self): 
         print(".")
@@ -126,7 +131,17 @@ class Soldier:
                             self.kills += e
                             self.shoot()
                             self.loading()
-                elif "musket" in weaponchoice: 
+                elif "sabre" in weaponchoice: 
+                    self.loading()
+                    if self.sabre == 1: 
+                        print("You've successfully killed them!") 
+                        self.kills += e
+                        self.loading
+                else: 
+                    self.loading()
+                    print("That's not a weapon...you draw nothing and they shoot you instead...")
+                    self.byebye()
+                    self.damage()
                     self.loading()
             elif e == 0: 
                 print("You've found none...")
@@ -194,20 +209,23 @@ class Soldier:
         print("The Battle of Saratoga is about to commence. Win the battle.")
     def usefood(self): 
         if self.hunger <= 70: 
-            character.hunger +=30
-            character.health+=5
-            character.fun +=10
-            character.food -=1
-            character.loading()
+            self.hunger +=30
+            self.health+=5
+            self.fun +=10
+            self.food -=1
+            self.loading()
             print("It's delicious...satisfying to this hunger...")
         elif self.hunger > 70: 
             print("You aren't hungry...")
     def usebandages(self): 
-                character.health +=20
-                character.fun +=5
-                character.bandages -=1
-                character.loading()
-                print("Healing the wounds...")
+        if self.health <=80: 
+            self.health +=20
+            self.fun +=5
+            self.bandages -=1
+            self.loading()
+            print("Healing the wounds...")
+        elif self.health >= 80: 
+            print("You're health is fine, no need to heal")
 
 
         
@@ -282,6 +300,21 @@ while True:
             elif "bayonet charge" in Userinput2:
                 character.loading()
                 character.charge()
+            elif "shop" in Userinput: 
+                character.shopping()
+            elif "use food" in Userinput: 
+                character.usefood()
+                character.loading()
+            elif "use bandages" in Userinput: 
+                character.health +=20
+                character.fun +=5
+                character.bandages -=1
+                character.loading()
+                print("Healing the wounds...")
+            if character.health <= 0: 
+                character.loading()
+                character.death()
+                break
             if character.health <= 0: 
                 character.loading()
                 character.death()
@@ -312,6 +345,21 @@ while True:
             elif "bayonet charge" in Userinput2:
                 character.loading()
                 character.charge()
+            elif "shop" in Userinput: 
+                character.shopping()
+            elif "use food" in Userinput: 
+                character.usefood()
+                character.loading()
+            elif "use bandages" in Userinput: 
+                character.health +=20
+                character.fun +=5
+                character.bandages -=1
+                character.loading()
+                print("Healing the wounds...")
+            if character.health <= 0: 
+                character.loading()
+                character.death()
+                break
             if character.health <= 0: 
                 character.loading()
                 character.death()
