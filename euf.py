@@ -1,7 +1,7 @@
 import random
 
 class Soldier: 
-    def __init__(self, name, hunger=100, health=100, fun=100, ammo=30, shots = 0, shillings = 0, suppliescaptured = 0, food = 0, bandages = 0, sabre = 0, kills = 0, living = True): 
+    def __init__(self, name, hunger=100, health=100, fun=100, ammo=30, shots = 0, shillings = 0, suppliescaptured = 0, positionsheld = 0, food = 0, bandages = 0, sabre = 0, kills = 0, living = True): 
         self.name = name
         self.hunger=hunger
         self.health=health
@@ -12,6 +12,7 @@ class Soldier:
         self.kills = kills
         self.living=living
         self.suppliescaptured = suppliescaptured
+        self.positionsheld = positionsheld
         self.food = food
         self.bandages = bandages
         self.sabre = sabre
@@ -136,7 +137,12 @@ class Soldier:
                     if self.sabre == 1: 
                         print("You've successfully killed them!") 
                         self.kills += e
-                        self.loading
+                        self.loading()
+                    elif self.sabre <1: 
+                        print("You do not have that weapon...you draw nothing and they shoot you instead")
+                        self.byebye()
+                        self.damage()
+                        self.loading()
                 else: 
                     self.loading()
                     print("That's not a weapon...you draw nothing and they shoot you instead...")
@@ -226,6 +232,23 @@ class Soldier:
             print("Healing the wounds...")
         elif self.health >= 80: 
             print("You're health is fine, no need to heal")
+    def holdposition(self): 
+        print("Hold your formation! Hold steady lads!") 
+        self.loading()
+        self.byebye()
+        x = random.randint(1,20)
+        if x >15: 
+            print("Your position was maintained...the rebels couldn't break through your formation")
+            self.positionsheld += 1
+            self.loading()
+        elif x <=15: 
+            print("The patriots broke through...you failed to maintain your position...") 
+            self.byebye()
+            self.damage()
+            self.loading()
+    def finishedlevel3(self): 
+        print("You've completed your mission...but so many lives were lost in the process...") 
+        self.loading()
 
 
         
@@ -264,11 +287,8 @@ while True:
                 character.usefood()
                 character.loading()
             elif "use bandages" in Userinput: 
-                character.health +=20
-                character.fun +=5
-                character.bandages -=1
+                character.usebandages()
                 character.loading()
-                print("Healing the wounds...")
             if character.health <= 0: 
                 character.loading()
                 character.death()
@@ -282,7 +302,7 @@ while True:
     if level2 == "play": 
         character.resetstats()
         character.loading()
-        if character.kills == 12 and character.shots == 15: 
+        if character.kills == 30 and character.shots == 6: 
             character.finishedlevel2()
             break
         while character.living == True: 
@@ -294,27 +314,20 @@ while True:
             if "man the canons" in Userinput2: 
                 character.loading()
                 character.manthecanons()
-            elif "find patriots" in Userinput: 
+            elif "find patriots" in Userinput2: 
                 character.loading()
                 character.findpatriots()
             elif "bayonet charge" in Userinput2:
                 character.loading()
                 character.charge()
-            elif "shop" in Userinput: 
+            elif "shop" in Userinput2: 
                 character.shopping()
-            elif "use food" in Userinput: 
+            elif "use food" in Userinput2: 
                 character.usefood()
                 character.loading()
-            elif "use bandages" in Userinput: 
-                character.health +=20
-                character.fun +=5
-                character.bandages -=1
+            elif "use bandages" in Userinput2: 
+                character.usebandages()
                 character.loading()
-                print("Healing the wounds...")
-            if character.health <= 0: 
-                character.loading()
-                character.death()
-                break
             if character.health <= 0: 
                 character.loading()
                 character.death()
@@ -327,39 +340,32 @@ while True:
     if level3 == "play": 
         character.resetstats()
         character.loading()
-        if character.kills == 40 and character.shots == 15: 
-            character.finishedlevel2()
+        if character.kills == 50 and character.positionsheld == 10: 
+            character.finishedlevel3()
             break
         while character.living == True: 
             character.dec()
             print(f"{character.shillings} shillings")
             print(f"{character.kills} kills")
-            Userinput2 = input(f"What would you like to do? Kill patriots, bayonet charge, or find patriots?")
-            Userinput2 =Userinput2.lower()
-            if "man the canons" in Userinput2: 
+            Userinput3 = input(f"What would you like to do? Kill patriots, bayonet charge, or hold position?")
+            Userinpu32 =Userinput3.lower()
+            if "hold position" in Userinput3: 
                 character.loading()
-                character.manthecanons()
-            elif "find patriots" in Userinput: 
+                character.holdposition()
+            elif "kill patriots" in Userinput3: 
                 character.loading()
                 character.findpatriots()
-            elif "bayonet charge" in Userinput2:
+            elif "bayonet charge" in Userinput3:
                 character.loading()
                 character.charge()
-            elif "shop" in Userinput: 
+            elif "shop" in Userinput3: 
                 character.shopping()
-            elif "use food" in Userinput: 
+            elif "use food" in Userinput3: 
                 character.usefood()
                 character.loading()
-            elif "use bandages" in Userinput: 
-                character.health +=20
-                character.fun +=5
-                character.bandages -=1
+            elif "use bandages" in Userinput3: 
+                character.usebandages()
                 character.loading()
-                print("Healing the wounds...")
-            if character.health <= 0: 
-                character.loading()
-                character.death()
-                break
             if character.health <= 0: 
                 character.loading()
                 character.death()
