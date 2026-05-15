@@ -24,43 +24,50 @@ class Soldier:
     def shopping(self):
         print("Would you like to check out the shop?")
         if "yes" in Userinput:
-            print("Welcome to the shop! My name's Bubbles, and Im selling a lotta good stuff here! Food: 3 shillings, Bandages: 3 shillings, Sabre: 5 shillings!")
+            print("Welcome to the shop! My name's Bubbles, and I'm selling a lotta good stuff here! Food: 3 shillings, Bandages: 3 shillings, Sabre: 5 shillings!")
             response = input("What do you want to buy?")
-            if "Food" in response:
+            if self.shillings == 0:
+                print("Sorry, you do not have enough shillings to make a purchase.")
+            elif "Food" in response and self.shillings >= 3:
                 print("You purchased food!")
                 self.food += 1
                 self.shillings -= 3
-            elif "Bandages" in response:
+            elif "Bandages" in response and self.shillings >= 3:
                 print("You purchased one bandage!")
                 self.bandage += 1
                 self.shillings -= 3
-            elif "Sabre" in response:
-                print("You purchased one Sabre!")
-                self.sabre += 1
-                self.shillings -= 5
-        else: 
+            elif "Sabre" in response and self.shillings >= 5:
+                    print("You purchased one Sabre!")
+                    self.sabre += 1
+                    self.shillings -= 5
+        elif "no" in Userinput:
             print("")
+
+    def loading(self):
+        print(".")
+        print("..")
+        print("...")
     def byebye(self): 
         self.fun -= 10
         self.hunger -= 5
     def dec(self): 
         if self.fun >30: 
             print("You're having fun!")
-        if self.hunger>30: 
-            print("You're full")
-        if self.health >50: 
-            print("You're surviving so far...")
-        if self.ammo >0: 
-            print(f"You have {self.ammo} ammo")
         elif self.fun <=30: 
             print("You're getting bored!")
             self.health -=1
             self.hunger-=5
+        if self.hunger>30: 
+            print("You're full")
         elif self.hunger <=30: 
             print("You're getting hungry!")
             self.health -=2
+        if self.health >50: 
+            print("You're surviving so far...")
         elif self.health<=50: 
             print(f"You have {self.health} health")
+        if self.ammo >0: 
+            print(f"You have {self.ammo} ammo")
         elif self.ammo == 0: 
             print("You have no ammo!")
     def shoot(self): 
@@ -163,6 +170,19 @@ class Soldier:
         self.kills = 0
     def finishedlevel2(self): 
         print("You've successfully completed your mission in Bunker's Hill!")
+    def hide(self):
+        print("You look for a place to hide...") 
+        character.byebye()
+        x = random.randint(1, 20)
+        if x <6: 
+            print("You crouch behind a bush...like the coward you are!") 
+        elif x >= 6: 
+            print("You were caught trying to hide, you coward!")
+            self.fun -= 10 
+        
+
+    def finishedlevel4(self):
+        print("You've successfully defended Yorktown!")
 
 
 print("Greetings! You are a officially a British soldier! Are you ready for this war?")
@@ -171,7 +191,7 @@ character = Soldier(Name)
 
 
 character.resetstats()
-print("You're told to stop the Patriots at Lexington and Concord by your commander.")
+""" print("You're told to stop the Patriots at Lexington and Concord by your commander.")
 while True: 
     level1 = input("Write play to begin the level.")
     if level1 == "play": 
@@ -200,9 +220,9 @@ while True:
                 character.death()
                 break
     else: 
-        print("Invalid command.")  
+        print("Invalid command.")   """
 
-while True: 
+""" while True: 
     level2 = input("Write play to begin the level.")
     if level2 == "play": 
         character.resetstats()
@@ -229,45 +249,33 @@ while True:
                 character.death()
                 break
     else: 
-        print("Invalid command.") 
+        print("Invalid command.")  """
 
 
 
 #MINE
-    def hide(self):
-        print("You look for a place to hide...") 
-        character.byebye()
-        x = random.randint(1, 20)
-        if x <15: 
-            print("You crouch behind a bush...like the coward you are!") 
-        elif x >= 15: 
-            print("You were caught trying to hide, you coward!")
-        self.fun -= 10 
-        
-
-    def finishedlevel4(self):
-        print("You've successfully defended Yorktown!")
 
 
 
-    while True:
-        character.resetstats()
-        print("Yorktown is going to be sieged by the Patriots! Defend Yorktown!")
-        alivecomrades = 20
-        deadcomrades = 0
-        kills = 0
-        level4 = input("Type 'play' to begin the level.")
-        if "play" in level4: 
-            while character.living == True: 
-                character.dec()
-                Userinput = input(f"What would you like to do?")
-                Userinput = Userinput.lower()
-                if "hide" in Userinput: 
-                    character.hide()
-                elif "attack" in Userinput or "patriots" in Userinput: 
-                    character.findpatriots()
-                if character.health <= 0:
-                    character.death()
-                    break
-            if kills == 30 and alivecomrades >= 15: 
-                finishedlevel4.character()
+
+while True:
+    character.resetstats()
+    print("Yorktown is going to be sieged by the Patriots! Defend Yorktown!")
+    alivecomrades = 20
+    deadcomrades = 0
+    kills = 0
+    level4 = input("Type 'play' to begin the level.")
+    if "play" in level4: 
+        while character.living == True: 
+            character.dec()
+            Userinput = input(f"What would you like to do? Attack...or hide?")
+            Userinput = Userinput.lower()
+            if "hide" in Userinput: 
+                character.hide()
+            elif "attack" in Userinput: 
+                character.findpatriots()
+            if character.health <= 0:
+                 character.death()
+                 break
+    if kills == 30 and alivecomrades >= 15:
+        character.finishedlevel4()
