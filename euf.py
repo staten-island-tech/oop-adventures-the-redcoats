@@ -52,7 +52,7 @@ class Soldier:
         print(". .")
         print(". . .")
     def byebye(self): 
-        self.fun -= 10
+        self.fun -= 2
         self.hunger -= 5
     def dec(self): 
         if self.fun >30: 
@@ -88,7 +88,7 @@ class Soldier:
         self.shillings +=2
         self.fun +=10
     def capturesupplies(self): 
-        self.suppliescaptured += 10
+        self.suppliescaptured += 5
         self.fun += 20
     def death(self): 
         print("You have died and failed your mission...")
@@ -263,7 +263,7 @@ while True:
     if level1 == "play": 
         character.loading()
         character.resetstats()
-        if character.kills == 10 and character.shillings == 4: 
+        if character.kills == 6 and character.suppliescaptured == 15: 
             character.finishedlevel1()
             break
         while character.living == True: 
