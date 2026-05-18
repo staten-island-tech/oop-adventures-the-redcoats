@@ -45,7 +45,7 @@ class Soldier:
             elif self.sabre == 1: 
                 print("You have already bought this")
         else: 
-            print("Sorry, that's not in the shop, try again")
+            print("Sorry, that's not in the shop...off you go!")
     
     def loading(self): 
         print(".")
@@ -289,6 +289,8 @@ while True:
             elif "use bandages" in Userinput: 
                 character.usebandages()
                 character.loading()
+            else: 
+                print("Invalid command")
             if character.health <= 0: 
                 character.loading()
                 character.death()
@@ -328,6 +330,8 @@ while True:
             elif "use bandages" in Userinput2: 
                 character.usebandages()
                 character.loading()
+            else: 
+                print("Invalid command")
             if character.health <= 0: 
                 character.loading()
                 character.death()
@@ -366,6 +370,8 @@ while True:
             elif "use bandages" in Userinput3: 
                 character.usebandages()
                 character.loading()
+            else: 
+                print("Invalid command")
             if character.health <= 0: 
                 character.loading()
                 character.death()
