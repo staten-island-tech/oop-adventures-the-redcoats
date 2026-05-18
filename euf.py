@@ -18,7 +18,7 @@ class Soldier:
         self.sabre = sabre
 
     def shopping(self):
-        print("Welcome to the shop! My name's Bubbles, and Im selling a lotta good stuff here! Food: 3 shillings, Bandages: 3 shillings, Sabre: 5 shillings!")
+        print("Welcome to the shop! My name's Bubbles, and Im selling a lotta good stuff here! Food: 3 shillings, Bandages: 3 shillings, Sabre: 5 shillings, Ammo: 2 shillings!")
         RESPONSE = input("What do you want to buy?")
         RESPONSE =RESPONSE.lower()
         if "food" in RESPONSE:
@@ -44,6 +44,12 @@ class Soldier:
                 print("My apologies..you don't have the expense to buy it...")
             elif self.sabre == 1: 
                 print("You have already bought this")
+        elif "ammo" in RESPONSE: 
+            if self.shillings >= 2: 
+                print("You've purchased 5 ammo!") 
+                self.ammo += 5
+            elif self.shillings <2: 
+                print("My apologies...you don't have the expense to buy it...")
         else: 
             print("Sorry, that's not in the shop...off you go!")
     
