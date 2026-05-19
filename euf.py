@@ -88,7 +88,7 @@ class Soldier:
             self.fun == 100
     def damage(self): 
         self.hunger -=5
-        self.health -=20
+        self.health -=10
         self.fun -=10
     def find(self): 
         self.shillings +=2
@@ -98,6 +98,7 @@ class Soldier:
         self.fun += 20
     def death(self): 
         print("You have died and failed your mission...")
+        self.sabre == 0
         self.living == False
     def findsupplies(self): 
         print("You go searching...") 
@@ -158,6 +159,7 @@ class Soldier:
             elif e == 0: 
                 print("You've found none...")
                 self.byebye()
+                self.loading()
         elif self.ammo == 0: 
             self.loading()
             print("You have no ammo...they shot you before you could react")
@@ -202,6 +204,7 @@ class Soldier:
         self.byebye()
         self.killedsomething()
         self.damage()
+        self.health -= 10
         self.kills +=x
     def finishedlevel1(self): 
         print("You've successfully completed your mission in Lexington and Concord!")
@@ -243,11 +246,11 @@ class Soldier:
         self.loading()
         self.byebye()
         x = random.randint(1,20)
-        if x >15: 
+        if x >10: 
             print("Your position was maintained...the rebels couldn't break through your formation")
             self.positionsheld += 1
             self.loading()
-        elif x <=15: 
+        elif x <=10: 
             print("The patriots broke through...you failed to maintain your position...") 
             self.byebye()
             self.damage()
@@ -269,35 +272,38 @@ while True:
     if level1 == "play": 
         character.loading()
         character.resetstats()
-    while True: 
-        character.dec()
-        if character.health <= 0: 
-            break
-        if character.kills >= 6 and character.suppliescaptured >= 15: 
-            break
-        print(f"{character.shillings} shillings")
-        print(f"{character.kills} kills")
-        Userinput = input(f"What would you like to do? Loot and plunder, find supplies, or find patriots?")
-        Userinput =Userinput.lower()
-        if "find supplies" in Userinput: 
-            character.loading()
-            character.findsupplies()
-        elif "find patriots" in Userinput: 
-            character.loading()
-            character.findpatriots()
-        elif "loot and plunder" in Userinput:
-            character.loading()
-            character.lootandplunder()
-        elif "shop" in Userinput: 
-            character.shopping()
-        elif "use food" in Userinput: 
-            character.usefood()
-            character.loading()
-        elif "use bandages" in Userinput: 
-            character.usebandages()
-            character.loading()
-        else: 
-            print("Invalid command")
+        while True: 
+            if character.health <= 0: 
+                break
+            if character.kills >= 6 and character.suppliescaptured >= 15: 
+                break
+            character.dec()
+            print(f"{character.shillings} shillings")
+            print(f"{character.kills} kills")
+            Userinput = input(f"What would you like to do, {character.name}? Loot and plunder, find supplies, or find patriots?")
+            Userinput =Userinput.lower()
+            if "find supplies" in Userinput: 
+                character.loading()
+                character.findsupplies()
+            elif "find patriots" in Userinput: 
+                character.loading()
+                character.findpatriots()
+            elif "loot and plunder" in Userinput:
+                character.loading()
+                character.lootandplunder()
+            elif "shop" in Userinput: 
+                character.shopping()
+            elif "use food" in Userinput: 
+                character.usefood()
+                character.loading()
+            elif "use bandages" in Userinput: 
+                character.usebandages()
+                character.loading()
+            else: 
+                print("Invalid command")
+                character.loading()
+    else: 
+        print("Invalid command.")  
     if character.health <= 0: 
         character.loading()
         character.death()
@@ -305,9 +311,6 @@ while True:
     if character.kills == 6 and character.suppliescaptured == 15: 
         character.finishedlevel1()
         break
-    else: 
-        print("Invalid command.")  
-
 
 
 while True: 
@@ -316,14 +319,14 @@ while True:
         character.resetstats()
         character.loading()
         while character.living == True: 
-            character.dec()
             if character.health <= 0: 
                 break
-            if character.kills >= 30 and character.shots >= 6: 
+            if character.kills >= 30 and character.shots >= 15: 
                 break
+            character.dec()
             print(f"{character.shillings} shillings")
             print(f"{character.kills} kills")
-            Userinput2 = input(f"What would you like to do? Man the canons, bayonet charge, or find patriots?")
+            Userinput2 = input(f"What would you like to do, sir? Man the canons, bayonet charge, or find patriots?")
             Userinput2 =Userinput2.lower()
             if "man the canons" in Userinput2: 
                 character.loading()
@@ -344,6 +347,9 @@ while True:
                 character.loading()
             else: 
                 print("Invalid command")
+                character.loading()
+    else: 
+        print("Invalid command.")  
     if character.health <= 0: 
         character.loading()
         character.death()
@@ -351,8 +357,6 @@ while True:
     if character.kills >= 30 and character.shots >= 6: 
         character.finishedlevel2()
         break
-    else: 
-        print("Invalid command.")  
         
 while True: 
     level3 = input("Write play to begin the level.")
@@ -360,17 +364,15 @@ while True:
         character.resetstats()
         character.loading()
         while character.living == True: 
-            character.dec()
             if character.health <= 0: 
-                character.loading()
-                character.death()
                 break
-            if character.kills >= 50 and character.positionsheld >= 6: 
+            if character.kills >= 50 and character.positionsheld >= 4: 
                 break
+            character.dec()
             print(f"{character.shillings} shillings")
             print(f"{character.kills} kills")
             Userinput3 = input(f"What would you like to do? Kill patriots, bayonet charge, or hold position?")
-            Userinpu32 =Userinput3.lower()
+            Userinpu3 =Userinput3.lower()
             if "hold position" in Userinput3: 
                 character.loading()
                 character.holdposition()
@@ -390,8 +392,13 @@ while True:
                 character.loading()
             else: 
                 print("Invalid command")
+                character.loading()
+    else: 
+        print("Invalid command.")  
+    if character.health <= 0: 
+        character.loading()
+        character.death()
+        break
     if character.kills >= 50 and character.positionsheld >= 6: 
         character.finishedlevel3()
         break
-    else: 
-        print("Invalid command.")  
