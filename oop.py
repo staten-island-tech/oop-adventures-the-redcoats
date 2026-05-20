@@ -150,7 +150,7 @@ class Soldier:
                         self.byebye()
                         self.damage()
                         self.loading()
-                else: 
+                else:   
                     self.loading()
                     print("That's not a weapon...you draw nothing and they shoot you instead...")
                     self.byebye()
