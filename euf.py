@@ -91,7 +91,8 @@ class Soldier:
         self.health -=10
         self.fun -=10
     def find(self): 
-        self.shillings +=2
+        x = random.randint(1,5)
+        self.shillings +=x
         self.fun +=10
     def capturesupplies(self): 
         self.suppliescaptured += 5
@@ -113,6 +114,34 @@ class Soldier:
             print("You've looted some supplies the Patriots stole!")
             self.capturesupplies()
             self.loading()
+    def drawsabre(self, e): 
+        self.loading()
+        if self.sabre == 1: 
+            print("You've successfully killed them!") 
+            self.kills += e
+            self.loading()
+        elif self.sabre <1: 
+            print("You do not have that weapon...you draw nothing and they shoot you instead")
+            self.byebye()
+            self.damage()
+            self.loading()
+    def drawmusket(self, e): 
+        self.loading()
+        shoot = input(f"Press x to shoot!")
+        if "x" in shoot: 
+            self.loading()
+            x = random.randint(1, 20)
+            if x <=10: 
+                print("Oh no! You missed! Now they've shot you!")
+                self.shoot()
+                self.damage()
+                self.byebye()
+                self.loading()
+            elif x >10: 
+                print("You've shot them!") 
+                self.kills += e
+                self.shoot()
+                self.loading()
     def findpatriots(self): 
         print("You run and try to find filthy rebels to kill")
         self.loading()
@@ -123,33 +152,9 @@ class Soldier:
                 self.loading()
                 weaponchoice = input(f"Would you like to kill using a musket or sabre?")
                 if "musket" in weaponchoice: 
-                    self.loading()
-                    shoot = input(f"Press x to shoot!")
-                    if "x" in shoot: 
-                        self.loading()
-                        x = random.randint(1, 20)
-                        if x <=10: 
-                            print("Oh no! You missed! Now they've shot you!")
-                            self.shoot()
-                            self.damage()
-                            self.byebye()
-                            self.loading()
-                        elif x >10: 
-                            print("You've shot them!") 
-                            self.kills += e
-                            self.shoot()
-                            self.loading()
+                    self.drawmusket()
                 elif "sabre" in weaponchoice: 
-                    self.loading()
-                    if self.sabre == 1: 
-                        print("You've successfully killed them!") 
-                        self.kills += e
-                        self.loading()
-                    elif self.sabre <1: 
-                        print("You do not have that weapon...you draw nothing and they shoot you instead")
-                        self.byebye()
-                        self.damage()
-                        self.loading()
+                    self.drawsabre()
                 else: 
                     self.loading()
                     print("That's not a weapon...you draw nothing and they shoot you instead...")
@@ -218,6 +223,8 @@ class Soldier:
         self.ammo= 30
         self.shots= 0
         self.kills = 0
+        print("You've recovered from the battle...") 
+        self.loading()
     def finishedlevel2(self): 
         print("You've successfully completed your mission in Bunker's Hill!")
         self.loading()
@@ -258,6 +265,37 @@ class Soldier:
     def finishedlevel3(self): 
         print("You've completed your mission...but so many lives were lost in the process...") 
         self.loading()
+    def level1(self): 
+        while self.living == True: 
+            if self.health <= 0:
+                break
+            if character.kills >= 6 and character.suppliescaptured >= 15: 
+                break
+            character.dec()
+            print(f"{character.shillings} shillings")
+            print(f"{character.kills} kills")
+            Userinput = input(f"What would you like to do, {character.name}? Loot and plunder, find supplies, or find patriots?")
+            Userinput =Userinput.lower()
+            if "find supplies" in Userinput: 
+                self.loading()
+                self.findsupplies()
+            elif "find patriots" in Userinput: 
+                self.loading()
+                self.findpatriots()
+            elif "loot and plunder" in Userinput:
+                self.loading()
+                self.lootandplunder()
+            elif "shop" in Userinput: 
+                self.shopping()
+            elif "use food" in Userinput: 
+                self.usefood()
+                self.loading()
+            elif "use bandages" in Userinput: 
+                character.usebandages()
+                self.loading()
+            else: 
+                print("Invalid command")
+                self.loading()
 
 
         
@@ -272,7 +310,7 @@ while True:
     if level1 == "play": 
         character.loading()
         character.resetstats()
-        while True: 
+        while character.living == True: 
             if character.health <= 0: 
                 break
             if character.kills >= 6 and character.suppliescaptured >= 15: 
@@ -302,8 +340,6 @@ while True:
             else: 
                 print("Invalid command")
                 character.loading()
-    else: 
-        print("Invalid command.")  
     if character.health <= 0: 
         character.loading()
         character.death()
@@ -311,6 +347,8 @@ while True:
     if character.kills == 6 and character.suppliescaptured == 15: 
         character.finishedlevel1()
         break
+    else: 
+        print("Invalid command.")  
 
 
 while True: 
@@ -348,8 +386,6 @@ while True:
             else: 
                 print("Invalid command")
                 character.loading()
-    else: 
-        print("Invalid command.")  
     if character.health <= 0: 
         character.loading()
         character.death()
@@ -357,6 +393,8 @@ while True:
     if character.kills >= 30 and character.shots >= 6: 
         character.finishedlevel2()
         break
+    else: 
+        print("Invalid command.")  
         
 while True: 
     level3 = input("Write play to begin the level.")
