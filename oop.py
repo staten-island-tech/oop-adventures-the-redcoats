@@ -137,6 +137,7 @@ class Soldier:
                         elif x >10: 
                             print("You've shot them!") 
                             self.kills += e
+                            
                             self.shoot()
                             self.loading()
                 elif "sabre" in weaponchoice: 
@@ -313,4 +314,5 @@ while character.finishedlevel4:
         print("You were able to fight against men, but it is simply impossible to defeat death...")
         character.loading()
         print("You died a death only a brave soldier is worthy of...was it worth it?")
+        character.loading()
         print("This is the end of the game! Thank you for playing!")
