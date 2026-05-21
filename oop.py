@@ -274,10 +274,13 @@ while True:
     if level4 == "play": 
         character.resetstats()
         character.loading()
-        if character.kills == 30 and character.alivecomrades >= 15:
-            character.finishedlevel4()
-            break
         while character.living == True: 
+            if character.kills >= 1:
+                character.finishedlevel4
+                break
+            if character.health <= 0:
+                character.death()
+                break
             character.dec()
             Userinput = input(f"What would you like to do? Attack...or hide?")
             Userinput = Userinput.lower()
@@ -285,9 +288,8 @@ while True:
                 character.hide()
             elif "attack" in Userinput: 
                 character.findpatriots()
-            if character.health <= 0:
-                character.death()
-                break
+    break
+        
 
 
 while character.finishedlevel4:
