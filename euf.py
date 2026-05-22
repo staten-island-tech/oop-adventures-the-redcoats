@@ -18,12 +18,15 @@ class Soldier:
         self.sabre = sabre
 
     def shopping(self):
+        print("Welcome to the shop! My name's Bubbles, and I'm selling a lotta good stuff here! Let me know when you're done shopping.")
+        self.loading()
         while True: 
-            print("Welcome to the shop! My name's Bubbles, and Im selling a lotta good stuff here! Let me know when you're done shopping. Food: 3 shillings, Bandages: 3 shillings, Sabre: 5 shillings, Ammo: 2 shillings!")
+            print("Food: 3 shillings, Bandages: 3 shillings, Sabre: 5 shillings, Ammo: 2 shillings")
             RESPONSE = input("What do you want to buy?")
             RESPONSE =RESPONSE.lower()
             if "food" in RESPONSE:
                 if self.shillings >= 3: 
+                    self.loading()
                     print("You purchased food!")
                     self.food += 1
                     self.shillings -= 3
@@ -31,27 +34,34 @@ class Soldier:
                     print("My apologies..you don't have the expense to buy it...")
             elif "bandages" in RESPONSE:
                 if self.shillings >= 3: 
+                    self.loading()
                     print("You purchased one bandage!")
                     self.bandages += 1
                     self.shillings -= 3
                 elif self.shillings <3: 
                     print("My apologies..you don't have the expense to buy it...")
             elif "sabre" in RESPONSE:
-                if self.shillings >=5: 
-                    print("You purchased one Sabre!")
-                    self.sabre += 1
-                    self.shillings -= 5
-                elif self.shillings <5: 
-                    print("My apologies..you don't have the expense to buy it...")
+                if self.sabre == 0: 
+                    if self.shillings >=5: 
+                        self.loading()
+                        print("You purchased one Sabre!")
+                        self.sabre += 1
+                        self.shillings -= 5
+                    elif self.shillings <5: 
+                        self.loading()
+                        print("My apologies..you don't have the expense to buy it...")
                 elif self.sabre == 1: 
+                    self.loading()
                     print("You have already bought this")
             elif "ammo" in RESPONSE: 
                 if self.shillings >= 2: 
+                    self.loading()
                     print("You've purchased 5 ammo!") 
                     self.ammo += 5
                 elif self.shillings <2: 
                     print("My apologies...you don't have the expense to buy it...")
             elif "done" in RESPONSE: 
+                self.loading()
                 print("Thank you for visiting!") 
                 self.loading()
                 break
@@ -150,8 +160,7 @@ class Soldier:
     def findpatriots(self, e): 
         print("You run and try to find filthy rebels to kill")
         self.loading()
-        if self.ammo >0: 
-
+        if self.ammo >0:                                                                                                                            
             if e >0: 
                 print(f"You've found {e}!")
                 self.loading()
@@ -367,6 +376,8 @@ class Soldier:
                 self.loading()
 
 
+print("You sign up for the British army as a loyalst in 1775 and immediately are enlisted in preventing the revolt of the current colonists in America.")
+
         
 
 Name = input("What do you call yourself, sir?")
@@ -376,8 +387,6 @@ print("You're told to stop the patriots at Lexington and Concord by your command
 
 while True: 
     if character.health <= 0: 
-        character.loading()
-        character.death()
         break
     if character.kills >= 6 and character.suppliescaptured >= 15: 
         character.finishedlevel1()
@@ -393,10 +402,8 @@ while True:
 
 while True: 
     if character.health <= 0: 
-        character.loading()
-        character.death()
         break
-    if character.kills >= 30 and character.shots >= 6: 
+    if character.kills >= 30 and character.shots >= 8: 
         character.finishedlevel2()
         break
     level2 = input("Write 'play' to begin the level.")
