@@ -1,7 +1,7 @@
 import random
 
 class Soldier: 
-    def __init__(self, name, hunger=100, health=100, fun=100, ammo=30, shots = 0, shillings = 0, suppliescaptured = 0, positionsheld = 0, food = 0, bandages = 0, sabre = 0, kills = 0, living = True): 
+    def __init__(self, name, hunger=100, health=100, fun=100, ammo=10, shots = 0, shillings = 0, suppliescaptured = 0, positionsheld = 0, food = 0, bandages = 0, sabre = 0, kills = 0, living = True): 
         self.name = name
         self.hunger=hunger
         self.health=health
@@ -18,34 +18,47 @@ class Soldier:
         self.sabre = sabre
 
     def shopping(self):
-        print("Welcome to the shop! My name's Bubbles, and Im selling a lotta good stuff here! Food: 3 shillings, Bandages: 3 shillings, Sabre: 5 shillings!")
-        RESPONSE = input("What do you want to buy?")
-        RESPONSE =RESPONSE.lower()
-        if "food" in RESPONSE:
-            if self.shillings >= 3: 
-                print("You purchased food!")
-                self.food += 1
-                self.shillings -= 3
-            elif self.shillings <3: 
-                print("My apologies..you don't have the expense to buy it...")
-        elif "bandages" in RESPONSE:
-            if self.shillings >= 3: 
-                print("You purchased one bandage!")
-                self.bandage += 1
-                self.shillings -= 3
-            elif self.shillings <3: 
-                print("My apologies..you don't have the expense to buy it...")
-        elif "sabre" in RESPONSE:
-            if self.shillings >=5: 
-                print("You purchased one Sabre!")
-                self.sabre += 1
-                self.shillings -= 5
-            elif self.shillings <5: 
-                print("My apologies..you don't have the expense to buy it...")
-            elif self.sabre == 1: 
-                print("You have already bought this")
-        else: 
-            print("Sorry, that's not in the shop, try again")
+        print("Welcome to the shop! My name's Bubbles, and I'm selling a lotta good stuff here! Let me know when you're done shopping.")
+        self.loading()
+        while True: 
+            print("Food: 3 shillings, Bandages: 3 shillings, Sabre: 5 shillings, Ammo: 2 shillings")
+            RESPONSE = input("What do you want to buy?")
+            RESPONSE =RESPONSE.lower()
+            if "food" in RESPONSE:
+                if self.shillings >= 3: 
+                    print("You purchased food!")
+                    self.food += 1
+                    self.shillings -= 3
+                elif self.shillings <3: 
+                    print("My apologies..you don't have the expense to buy it...")
+            elif "bandages" in RESPONSE:
+                if self.shillings >= 3: 
+                    print("You purchased one bandage!")
+                    self.bandages += 1
+                    self.shillings -= 3
+                elif self.shillings <3: 
+                    print("My apologies..you don't have the expense to buy it...")
+            elif "sabre" in RESPONSE:
+                if self.shillings >=5: 
+                    print("You purchased one Sabre!")
+                    self.sabre += 1
+                    self.shillings -= 5
+                elif self.shillings <5: 
+                    print("My apologies..you don't have the expense to buy it...")
+                elif self.sabre == 1: 
+                    print("You have already bought this")
+            elif "ammo" in RESPONSE: 
+                if self.shillings >= 2: 
+                    print("You've purchased 5 ammo!") 
+                    self.ammo += 5
+                elif self.shillings <2: 
+                    print("My apologies...you don't have the expense to buy it...")
+            elif "done" in RESPONSE: 
+                print("Thank you for visiting!") 
+                self.loading()
+                break
+            else: 
+                print("Sorry, that's not in the shop...")
     
     def loading(self): 
         print(".")
@@ -82,70 +95,73 @@ class Soldier:
             self.fun == 100
     def damage(self): 
         self.hunger -=5
-        self.health -=20
+        self.health -=10
         self.fun -=10
     def find(self): 
-        self.shillings +=2
+        x = random.randint(1,5)
+        self.shillings +=x
         self.fun +=10
     def capturesupplies(self): 
-        self.suppliescaptured += 10
+        self.suppliescaptured += 5
         self.fun += 20
     def death(self): 
         print("You have died and failed your mission...")
+        self.sabre == 0
         self.living == False
     def findsupplies(self): 
         print("You go searching...") 
         self.loading()
         self.byebye()
         x = random.randint(1, 20)
-        if x <15: 
+        if x <5: 
             print("You've found nothing...") 
             self.byebye()
             self.loading()
-        elif x>=15: 
+        elif x>=5: 
             print("You've looted some supplies the Patriots stole!")
             self.capturesupplies()
             self.loading()
-    def findpatriots(self): 
+    def drawsabre(self, e): 
+        self.loading()
+        if self.sabre == 1: 
+            print("You've successfully killed them!") 
+            self.kills += e
+            self.loading()
+        elif self.sabre <1: 
+            print("You do not have that weapon...you draw nothing and they shoot you instead")
+            self.byebye()
+            self.damage()
+            self.loading()
+    def drawmusket(self, e): 
+        self.loading()
+        shoot = input(f"Press x to shoot!")
+        if "x" in shoot: 
+            self.loading()
+            x = random.randint(1, 20)
+            if x <=10: 
+                print("Oh no! You missed! Now they've shot you!")
+                self.shoot()
+                self.damage()
+                self.byebye()
+                self.loading()
+            elif x >10: 
+                print("You've shot them!") 
+                self.kills += e
+                self.shoot()
+                self.loading()
+    def findpatriots(self, e): 
         print("You run and try to find filthy rebels to kill")
         self.loading()
-        if self.ammo >0: 
-            e = random.randint(0, 5)
+        if self.ammo >0:                                                                                                                            
             if e >0: 
                 print(f"You've found {e}!")
                 self.loading()
                 weaponchoice = input(f"Would you like to kill using a musket or sabre?")
                 if "musket" in weaponchoice: 
-                    self.loading()
-                    shoot = input(f"Press x to shoot!")
-                    if "x" in shoot: 
-                        self.loading()
-                        x = random.randint(1, 20)
-                        if x <=10: 
-                            print("Oh no! You missed! Now they've shot you!")
-                            self.shoot()
-                            self.damage()
-                            self.byebye()
-                            self.loading()
-                        elif x >10: 
-                            print("You've shot them!") 
-                            self.kills += e
-                            print(f"You've shot {e} so far!")
-                            
-                            self.shoot()
-                            self.loading()
+                    self.drawmusket(e)
                 elif "sabre" in weaponchoice: 
-                    self.loading()
-                    if self.sabre == 1: 
-                        print("You've successfully killed them!") 
-                        self.kills += e
-                        self.loading()
-                    elif self.sabre <1: 
-                        print("You do not have that weapon...you draw nothing and they shoot you instead")
-                        self.byebye()
-                        self.damage()
-                        self.loading()
-                else:   
+                    self.drawsabre(e)
+                else: 
                     self.loading()
                     print("That's not a weapon...you draw nothing and they shoot you instead...")
                     self.byebye()
@@ -154,6 +170,7 @@ class Soldier:
             elif e == 0: 
                 print("You've found none...")
                 self.byebye()
+                self.loading()
         elif self.ammo == 0: 
             self.loading()
             print("You have no ammo...they shot you before you could react")
@@ -164,11 +181,11 @@ class Soldier:
         self.loading()
         self.byebye()
         x = random.randint(1, 20)
-        if x <5: 
+        if x <10: 
             print("You've found some money!")
             self.find()
             self.loading()
-        elif x >=5: 
+        elif x >=10: 
             print("You've found nothing...")
             self.byebye()
             self.loading()
@@ -198,14 +215,25 @@ class Soldier:
         self.byebye()
         self.killedsomething()
         self.damage()
+        self.health -= 10
         self.kills +=x
+    def finishedlevel1(self): 
+        print("You've successfully completed your mission in Lexington and Concord!")
+        self.loading()
+        print("You're now ordered to take the land of Bunker's Hill")
+        self.loading()
     def resetstats(self):
         self.hunger= 100
         self.health= 100
         self.fun= 100
-        self.ammo= 30
+        self.ammo= 10
         self.shots= 0
         self.kills = 0
+        self.loading()
+    def finishedlevel2(self): 
+        print("You've successfully completed your mission in Bunker's Hill!")
+        self.loading()
+        print("The Battle of Saratoga is about to commence. Win the battle.")
     def usefood(self): 
         if self.hunger <= 70: 
             self.hunger +=30
@@ -230,16 +258,137 @@ class Soldier:
         self.loading()
         self.byebye()
         x = random.randint(1,20)
-        if x >15: 
+        if x >10: 
             print("Your position was maintained...the rebels couldn't break through your formation")
             self.positionsheld += 1
             self.loading()
-        elif x <=15: 
+        elif x <=10: 
             print("The patriots broke through...you failed to maintain your position...") 
             self.byebye()
             self.damage()
             self.loading()
+    def finishedlevel3(self): 
+        print("You've completed your mission...but so many lives were lost in the process...") 
         self.loading()
+    def level1(self): 
+        while True: 
+            if self.health <= 0: 
+                break
+            if self.kills >= 6 and self.suppliescaptured >= 15: 
+                break
+            self.dec()
+            print(f"{self.shillings} shillings")
+            print(f"{self.kills} kills")
+            Userinput = input(f"What would you like to do, {self.name}? Loot and plunder, find supplies, or find patriots?")
+            Userinput =Userinput.lower()
+            if "find supplies" in Userinput: 
+                self.loading()
+                self.findsupplies()
+            elif "find patriots" in Userinput: 
+                e = random.randint(0, 5)
+                self.loading()
+                self.findpatriots(e)
+            elif "loot and plunder" in Userinput:
+                self.loading()
+                self.lootandplunder()
+            elif "shop" in Userinput: 
+                self.shopping()
+            elif "use food" in Userinput: 
+                self.usefood()
+                self.loading()
+            elif "use bandages" in Userinput: 
+                self.usebandages()
+                self.loading()
+            else: 
+                print("Invalid command")
+                self.loading()
+    def level2(self): 
+        while True: 
+            if self.health <= 0: 
+                break
+            if self.kills >= 30 and self.shots >= 15: 
+                break
+            self.dec()
+            print(f"{self.shillings} shillings")
+            print(f"{self.kills} kills")
+            Userinput2 = input(f"What would you like to do, sir? Man the canons, bayonet charge, or find patriots?")
+            Userinput2 =Userinput2.lower()
+            if "man the canons" in Userinput2: 
+                self.loading()
+                self.manthecanons()
+            elif "find patriots" in Userinput2: 
+                e = random.randint(0, 5)
+                self.loading()
+                self.findpatriots(e)
+            elif "bayonet charge" in Userinput2:
+                self.loading()
+                self.charge()
+            elif "shop" in Userinput2: 
+                self.shopping()
+            elif "use food" in Userinput2: 
+                self.usefood()
+                self.loading()
+            elif "use bandages" in Userinput2: 
+                self.usebandages()
+                self.loading()
+            else: 
+                print("Invalid command")
+                self.loading()
+    def level3(self): 
+        while True: 
+            if self.health <= 0: 
+                break
+            if self.kills >= 50 and self.positionsheld >= 4: 
+                break
+            self.dec()
+            print(f"{self.shillings} shillings")
+            print(f"{self.kills} kills")
+            Userinput3 = input(f"What would you like to do? Kill patriots, bayonet charge, or hold position?")
+            Userinput3 =Userinput3.lower()
+            if "hold position" in Userinput3: 
+                self.loading()
+                self.holdposition()
+            elif "kill patriots" in Userinput3: 
+                e = random.randint(0, 5)
+                self.loading()
+                self.findpatriots(e)
+            elif "bayonet charge" in Userinput3:
+                self.loading()
+                self.charge()
+            elif "shop" in Userinput3: 
+                self.shopping()
+            elif "use food" in Userinput3: 
+                self.usefood()
+                self.loading()
+            elif "use bandages" in Userinput3: 
+                self.usebandages()
+                self.loading()
+            else: 
+                print("Invalid command")
+                self.loading()
+            Userinput3 = input(f"What would you like to do? Kill patriots, bayonet charge, or hold position?")
+            Userinput3 =Userinput3.lower()
+            if "hold position" in Userinput3: 
+                self.loading()
+                self.holdposition()
+            elif "kill patriots" in Userinput3: 
+                e = random.randint(0, 5)
+                self.loading()
+                self.findpatriots(e)
+            elif "bayonet charge" in Userinput3:
+                self.loading()
+                self.charge()
+            elif "shop" in Userinput3: 
+                self.shopping()
+            elif "use food" in Userinput3: 
+                self.usefood()
+                self.loading()
+            elif "use bandages" in Userinput3: 
+                self.usebandages()
+                self.loading()
+            else: 
+                print("Invalid command")
+                self.loading()
     def hide(self):
         print("You look for a place to hide...") 
         character.byebye()
@@ -251,17 +400,100 @@ class Soldier:
             print("You were caught trying to hide, you coward!")
             character.loading()
             self.fun -= 10 
+    def level4(self):
+        while True: 
+            if self.health <= 0: 
+                break
+            if self.kills >= 50:
+                break
+            self.dec()
+            print(f"{self.shillings} shillings")
+            print(f"{self.kills} kills")
+            Userinput4 = input(f"What would you like to do? Kill patriots...or hide?")
+            Userinput4 = Userinput4.lower()
+            if "hold position" in Userinput4: 
+                self.loading()
+                self.holdposition()
+            elif "kill patriots" in Userinput4: 
+                e = random.randint(0, 5)
+                self.loading()
+                self.findpatriots(e)
+            elif "bayonet charge" in Userinput4:
+                self.loading()
+                self.charge()
+            elif "shop" in Userinput4: 
+                self.shopping()
+            elif "use food" in Userinput4: 
+                self.usefood()
+                self.loading()
+            elif "use bandages" in Userinput4: 
+                self.usebandages()
+                self.loading()
+            elif "hide" in Userinput4:
+                self.hide()
+            else: 
+                print("Invalid command")
+                self.loading()
+
     def finishedlevel4(self):
         print("You've successfully defended Yorktown!")
         character.loading()
 
+print("You sign up for the British army as a loyalst in 1775 and immediately are enlisted in preventing the revolt of the current colonists in America")
 
         
 
 Name = input("What do you call yourself, sir?")
 character = Soldier(Name)
 character.resetstats()
+print("You're told to stop the patriots at Lexington and Concord by your commander.")
 
+""" while True: 
+    if character.health <= 0: 
+        break
+    if character.kills >= 6 and character.suppliescaptured >= 15: 
+        character.finishedlevel1()
+        break
+    level1 = input("Write 'play' to begin the level.")
+    if level1 == "play": 
+        character.loading()
+        character.resetstats()
+        character.level1()
+    else: 
+        print("Invalid command.")  
+
+
+while True: 
+    if character.health <= 0: 
+        break
+    if character.kills >= 30 and character.shots >= 6: 
+        character.finishedlevel2()
+        break
+    level2 = input("Write 'play' to begin the level.")
+    if level2 == "play": 
+        character.resetstats()
+        print("You've recovered from battle...")
+        character.loading()
+        character.level2()
+    else: 
+        print("Invalid command.")  
+        
+while True: 
+    if character.health <= 0: 
+        character.loading()
+        character.death()
+        break
+    if character.kills >= 50 and character.positionsheld >= 6: 
+        character.finishedlevel3()
+        break
+    level3 = input("Write 'play' to begin the level.")
+    if level3 == "play": 
+        character.resetstats()
+        print("You've recovered from battle...")
+        character.loading()
+        character.level3()
+    else: 
+        print("Invalid command.")  """
 
 while True:
     print("Yorktown is going to be sieged by the Patriots! Defend Yorktown!")
@@ -276,14 +508,14 @@ while True:
             if character.health <= 0:
                 character.death()
                 break
+            print(f"You have {character.kills} kills so far!")
             character.dec()
             Userinput = input(f"What would you like to do? Attack...or hide?")
             Userinput = Userinput.lower()
             if "hide" in Userinput: 
                 character.hide()
             elif "attack" in Userinput: 
-                character.findpatriots()
-    break
+                character.findpatriots(e)
 
 while True:
     the_end = input("Type 'play' to continue playing")
@@ -312,6 +544,8 @@ while True:
             character.loading()
             print("You died a death only a brave soldier is worthy of...was it worth it?")
             character.loading()
+            character.loading()
+            print("You're family in Britain receives a letter about your death...their little boy is gone.")
             print("This is the end of the game! Thank you for playing!")
             break
         elif ending == "no":
@@ -322,5 +556,7 @@ while True:
             character.loading()
             print("You are now a prisoner of the Patriots...was it worth it?")
             character.loading()
+            character.loading()
+            print("A messenger in Britain visits your family...you're missing in action...and forever will be.")
             print("This is the end of our game! Thank you for playing!")
             break
