@@ -130,6 +130,7 @@ class Soldier:
                         elif x >10: 
                             print("You've shot them!") 
                             self.kills += e
+                            print(f"You've shot {e} so far!")
                             
                             self.shoot()
                             self.loading()
