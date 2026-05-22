@@ -1,11 +1,4 @@
 import random
-""" class Patriots:
-    def __init__(self, health = 100, living = True):
-        self.health = health
-        self.living = living
-    def impact_1(self):
-        self.health -= 100
-        self.living = False """
 
 class Soldier: 
     def __init__(self, name, hunger=100, health=100, fun=100, ammo=30, shots = 0, shillings = 0, suppliescaptured = 0, positionsheld = 0, food = 0, bandages = 0, sabre = 0, kills = 0, living = True): 
@@ -259,6 +252,7 @@ class Soldier:
             self.fun -= 10 
     def finishedlevel4(self):
         print("You've successfully defended Yorktown!")
+        character.loading()
 
 
         
@@ -275,8 +269,8 @@ while True:
         character.resetstats()
         character.loading()
         while character.living == True: 
-            if character.kills >= 1:
-                character.finishedlevel4
+            if character.kills >= 30:
+                character.finishedlevel4()
                 break
             if character.health <= 0:
                 character.death()
@@ -289,32 +283,43 @@ while True:
             elif "attack" in Userinput: 
                 character.findpatriots()
     break
-        
 
-
-while character.finishedlevel4:
-    character.loading()
-    print("Another day, another battle.")
-    character.loading()
-    print("However, this morning you woke up with a bad feeling in your stomach...")
-    character.loading()
-    character.loading()
-    ending = input("You're now in the middle of a fight against a Patriot! Are you willing to do whatever it takes to survive?")
-    if ending == "yes":
-        print("You pull out your musket and point it straight towards your opponent...")
+while True:
+    the_end = input("Type 'play' to continue playing")
+    if the_end == "play":
         character.loading()
-        print("You are about to pull the trigger, but suddenly... an immense pain explodes across your body...")
+        print("Another day, another battle.")
         character.loading()
-        print("You've just been brutally shot...")
+        print("However, this morning you woke up with a bad feeling in your stomach...")
         character.loading()
-        print("You fall to the ground...the bullet's force had taken the breath out of your lungs...")
         character.loading()
-        print("You cough up blood...you try to scream, call for help...but the words don't come out...")
-        character.loading()
-        print("You feel your life slowly fading away...but you see this warm, welcoming light...inviting you to come towards it...")
-        character.loading()
-        print("You were able to fight against men, but it is simply impossible to defeat death...")
-        character.loading()
-        print("You died a death only a brave soldier is worthy of...was it worth it?")
-        character.loading()
-        print("This is the end of the game! Thank you for playing!")
+        ending = input("You're now in the middle of a fight against a Patriot! Are you willing to do whatever it takes to survive?")
+        if ending == "yes":
+            print("You pull out your musket and point it straight towards your opponent...")
+            character.loading()
+            print("You are about to pull the trigger, but suddenly... an immense pain explodes across your body...")
+            character.loading()
+            print("You've just been brutally shot...")
+            character.loading()
+            print("You fall to the ground...the bullet's force had knocked the breath out of you...")
+            character.loading()
+            print("You cough up blood...you try to scream, call for help...but the words don't come out...")
+            character.loading()
+            print("You feel your life slowly fading away...but you see this warm, welcoming light...inviting you to come towards it...")
+            character.loading()
+            print("You were able to fight against men, but it is simply impossible to defeat death...")
+            character.loading()
+            print("You died a death only a brave soldier is worthy of...was it worth it?")
+            character.loading()
+            print("This is the end of the game! Thank you for playing!")
+            break
+        elif ending == "no":
+            character.loading()
+            print("You surrender to the Patriot...")
+            character.loading()
+            print("The Patriot captures you, bringing you back to their fort...")
+            character.loading()
+            print("You are now a prisoner of the Patriots...was it worth it?")
+            character.loading()
+            print("This is the end of our game! Thank you for playing!")
+            break
