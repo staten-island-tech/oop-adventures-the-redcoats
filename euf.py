@@ -18,40 +18,45 @@ class Soldier:
         self.sabre = sabre
 
     def shopping(self):
-        print("Welcome to the shop! My name's Bubbles, and Im selling a lotta good stuff here! Food: 3 shillings, Bandages: 3 shillings, Sabre: 5 shillings, Ammo: 2 shillings!")
-        RESPONSE = input("What do you want to buy?")
-        RESPONSE =RESPONSE.lower()
-        if "food" in RESPONSE:
-            if self.shillings >= 3: 
-                print("You purchased food!")
-                self.food += 1
-                self.shillings -= 3
-            elif self.shillings <3: 
-                print("My apologies..you don't have the expense to buy it...")
-        elif "bandages" in RESPONSE:
-            if self.shillings >= 3: 
-                print("You purchased one bandage!")
-                self.bandages += 1
-                self.shillings -= 3
-            elif self.shillings <3: 
-                print("My apologies..you don't have the expense to buy it...")
-        elif "sabre" in RESPONSE:
-            if self.shillings >=5: 
-                print("You purchased one Sabre!")
-                self.sabre += 1
-                self.shillings -= 5
-            elif self.shillings <5: 
-                print("My apologies..you don't have the expense to buy it...")
-            elif self.sabre == 1: 
-                print("You have already bought this")
-        elif "ammo" in RESPONSE: 
-            if self.shillings >= 2: 
-                print("You've purchased 5 ammo!") 
-                self.ammo += 5
-            elif self.shillings <2: 
-                print("My apologies...you don't have the expense to buy it...")
-        else: 
-            print("Sorry, that's not in the shop...off you go!")
+        while True: 
+            print("Welcome to the shop! My name's Bubbles, and Im selling a lotta good stuff here! Let me know when you're done shopping. Food: 3 shillings, Bandages: 3 shillings, Sabre: 5 shillings, Ammo: 2 shillings!")
+            RESPONSE = input("What do you want to buy?")
+            RESPONSE =RESPONSE.lower()
+            if "food" in RESPONSE:
+                if self.shillings >= 3: 
+                    print("You purchased food!")
+                    self.food += 1
+                    self.shillings -= 3
+                elif self.shillings <3: 
+                    print("My apologies..you don't have the expense to buy it...")
+            elif "bandages" in RESPONSE:
+                if self.shillings >= 3: 
+                    print("You purchased one bandage!")
+                    self.bandages += 1
+                    self.shillings -= 3
+                elif self.shillings <3: 
+                    print("My apologies..you don't have the expense to buy it...")
+            elif "sabre" in RESPONSE:
+                if self.shillings >=5: 
+                    print("You purchased one Sabre!")
+                    self.sabre += 1
+                    self.shillings -= 5
+                elif self.shillings <5: 
+                    print("My apologies..you don't have the expense to buy it...")
+                elif self.sabre == 1: 
+                    print("You have already bought this")
+            elif "ammo" in RESPONSE: 
+                if self.shillings >= 2: 
+                    print("You've purchased 5 ammo!") 
+                    self.ammo += 5
+                elif self.shillings <2: 
+                    print("My apologies...you don't have the expense to buy it...")
+            elif "done" in RESPONSE: 
+                print("Thank you for visiting!") 
+                self.loading()
+                break
+            else: 
+                print("Sorry, that's not in the shop...")
     
     def loading(self): 
         print(".")
@@ -397,6 +402,7 @@ while True:
     level2 = input("Write play to begin the level.")
     if level2 == "play": 
         character.resetstats()
+        print("You've recovered from battle...")
         character.loading()
         character.level2()
     else: 
@@ -413,6 +419,7 @@ while True:
     level3 = input("Write play to begin the level.")
     if level3 == "play": 
         character.resetstats()
+        print("You've recovered from battle...")
         character.loading()
         character.level3()
     else: 
