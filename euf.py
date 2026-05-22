@@ -382,7 +382,7 @@ while True:
     if character.kills >= 6 and character.suppliescaptured >= 15: 
         character.finishedlevel1()
         break
-    level1 = input("Write play to begin the level.")
+    level1 = input("Write 'play' to begin the level.")
     if level1 == "play": 
         character.loading()
         character.resetstats()
@@ -399,7 +399,7 @@ while True:
     if character.kills >= 30 and character.shots >= 6: 
         character.finishedlevel2()
         break
-    level2 = input("Write play to begin the level.")
+    level2 = input("Write 'play' to begin the level.")
     if level2 == "play": 
         character.resetstats()
         print("You've recovered from battle...")
@@ -416,7 +416,7 @@ while True:
     if character.kills >= 50 and character.positionsheld >= 6: 
         character.finishedlevel3()
         break
-    level3 = input("Write play to begin the level.")
+    level3 = input("Write 'play' to begin the level.")
     if level3 == "play": 
         character.resetstats()
         print("You've recovered from battle...")
