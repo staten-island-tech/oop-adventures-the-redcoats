@@ -314,7 +314,7 @@ class Soldier:
         while True: 
             if self.health <= 0: 
                 break
-            if self.kills >= 30 and self.shots >= 15: 
+            if self.kills >= 20 and self.shots >= 15: 
                 break
             self.dec()
             print(f"{self.shillings} shillings")
@@ -346,7 +346,7 @@ class Soldier:
         while True: 
             if self.health <= 0: 
                 break
-            if self.kills >= 50 and self.positionsheld >= 4: 
+            if self.kills >= 30 and self.positionsheld >= 4: 
                 break
             self.dec()
             print(f"{self.shillings} shillings")
@@ -376,7 +376,7 @@ class Soldier:
                 self.loading()
 
 
-print("You sign up for the British army as a loyalst in 1775 and immediately are enlisted in preventing the revolt of the current colonists in America.")
+print("You sign up for the British army as a loyalist in 1775 and immediately are enlisted in preventing the revolt of the current colonists in America.")
 
         
 
@@ -403,7 +403,7 @@ while True:
 while True: 
     if character.health <= 0: 
         break
-    if character.kills >= 30 and character.shots >= 8: 
+    if character.kills >= 20 and character.shots >= 8: 
         character.finishedlevel2()
         break
     level2 = input("Write 'play' to begin the level.")
@@ -420,7 +420,7 @@ while True:
         character.loading()
         character.death()
         break
-    if character.kills >= 50 and character.positionsheld >= 6: 
+    if character.kills >= 30 and character.positionsheld >= 6: 
         character.finishedlevel3()
         break
     level3 = input("Write 'play' to begin the level.")
