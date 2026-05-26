@@ -23,7 +23,7 @@ class Soldier:
         while True: 
             print("Food: 3 shillings, Bandages: 3 shillings, Sabre: 5 shillings, Ammo: 2 shillings")
             RESPONSE = input("What do you want to buy?")
-            RESPONSE =RESPONSE.lower()
+            RESPONSE = RESPONSE.lower()
             if "food" in RESPONSE:
                 if self.shillings >= 3: 
                     print("You purchased food!")
@@ -56,6 +56,7 @@ class Soldier:
             elif "done" in RESPONSE: 
                 print("Thank you for visiting!") 
                 self.loading()
+            elif "nothing" in RESPONSE:
                 break
             else: 
                 print("Sorry, that's not in the shop...")
@@ -409,18 +410,12 @@ class Soldier:
             self.dec()
             print(f"{self.shillings} shillings")
             print(f"{self.kills} kills")
-            Userinput4 = input(f"What would you like to do? Kill patriots...or hide?")
+            Userinput4 = input(f"What would you like to do? You can kill patriots, shop, use food or bandages, or hide...")
             Userinput4 = Userinput4.lower()
-            if "hold position" in Userinput4: 
-                self.loading()
-                self.holdposition()
-            elif "kill patriots" in Userinput4: 
+            if "kill patriots" in Userinput4: 
                 e = random.randint(0, 5)
                 self.loading()
                 self.findpatriots(e)
-            elif "bayonet charge" in Userinput4:
-                self.loading()
-                self.charge()
             elif "shop" in Userinput4: 
                 self.shopping()
             elif "use food" in Userinput4: 
@@ -446,9 +441,9 @@ print("You sign up for the British army as a loyalst in 1775 and immediately are
 Name = input("What do you call yourself, sir?")
 character = Soldier(Name)
 character.resetstats()
-print("You're told to stop the patriots at Lexington and Concord by your commander.")
 
-""" while True: 
+while True: 
+    print("You're told to stop the patriots at Lexington and Concord by your commander.")
     if character.health <= 0: 
         break
     if character.kills >= 6 and character.suppliescaptured >= 15: 
@@ -493,29 +488,23 @@ while True:
         character.loading()
         character.level3()
     else: 
-        print("Invalid command.")  """
+        print("Invalid command.")  
 
-while True:
+while True: 
     print("Yorktown is going to be sieged by the Patriots! Defend Yorktown!")
-    level4 = input("Type 'play' to begin the level.")
+    if character.health <= 0: 
+        break
+    if character.kills >= 50: 
+        character.finishedlevel4()
+        break
+    level4 = input("Write 'play' to begin the level.")
     if level4 == "play": 
-        character.resetstats()
         character.loading()
-        while character.living == True: 
-            if character.kills >= 30:
-                character.finishedlevel4()
-                break
-            if character.health <= 0:
-                character.death()
-                break
-            print(f"You have {character.kills} kills so far!")
-            character.dec()
-            Userinput = input(f"What would you like to do? Attack...or hide?")
-            Userinput = Userinput.lower()
-            if "hide" in Userinput: 
-                character.hide()
-            elif "attack" in Userinput: 
-                character.findpatriots(e)
+        character.resetstats()
+        character.level4()
+    else: 
+        print("Invalid command.") 
+
 
 while True:
     the_end = input("Type 'play' to continue playing")
