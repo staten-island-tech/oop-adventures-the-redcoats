@@ -56,7 +56,6 @@ class Soldier:
             elif "done" in RESPONSE: 
                 print("Thank you for visiting!") 
                 self.loading()
-            elif "nothing" in RESPONSE:
                 break
             else: 
                 print("Sorry, that's not in the shop...")
@@ -457,7 +456,7 @@ class Soldier:
         print("You've successfully defended Yorktown!")
         character.loading()
 
-print("You sign up for the British army as a loyalst in 1775 and immediately are enlisted in preventing the revolt of the current colonists in America")
+print("You sign up for the British army as a loyalist in 1775 and immediately are enlisted in preventing the revolt of the current colonists in America")
 
 
 Name = input("What do you call yourself, sir?")
