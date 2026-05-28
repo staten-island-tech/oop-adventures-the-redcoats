@@ -282,6 +282,7 @@ class Soldier:
             print(f"{self.kills} kills")
             print(f"{self.suppliescaptured} supplies captured")
             print(f"{self.food} food")
+            print(f"{self.bandages} bandages")
             Userinput = input(f"What would you like to do, {self.name}? Loot and plunder, find supplies, or find patriots?")
             Userinput =Userinput.lower()
             if "find supplies" in Userinput: 
@@ -324,6 +325,7 @@ class Soldier:
             print(f"{self.kills} kills")
             print(f"{self.shots} canon shots")
             print(f"{self.food} food")
+            print(f"{self.bandages} bandages")
             Userinput2 = input(f"What would you like to do, sir? Man the canons, bayonet charge, or find patriots?")
             Userinput2 =Userinput2.lower()
             if "man the canons" in Userinput2: 
@@ -364,6 +366,8 @@ class Soldier:
             self.dec()
             print(f"{self.shillings} shillings")
             print(f"{self.kills} kills")
+            print(f"{self.food} food")
+            print(f"{self.bandages} bandages")
             Userinput3 = input(f"What would you like to do? Kill patriots, bayonet charge, or hold position?")
             Userinput3 =Userinput3.lower()
             if "hold position" in Userinput3: 
@@ -416,6 +420,7 @@ class Soldier:
             print(f"{self.shillings} shillings")
             print(f"{self.kills} kills")
             print(f"{self.food} food")
+            print(f"{self.bandages} bandages")
             Userinput4 = input(f"What would you like to do? Kill patriots, bayonet charge, or hide...")
             Userinput4 = Userinput4.lower()
             if "kill patriots" in Userinput4: 
