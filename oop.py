@@ -569,5 +569,5 @@ while True:
             character.loading()
             character.loading()
             print("A messenger in Britain visits your family...you're missing in action...and forever will be.")
-            print("This is the end of our game! Thank you for playing!")
+            print("This is the end of the game! Thank you for playing!")
             break
