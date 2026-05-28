@@ -186,7 +186,6 @@ class Soldier:
             self.damage()
     def lootandplunder(self): 
         print("You start looting the dead bodies of fallen comrades and enemies.")
-        self.loading()
         self.byebye()
         x = random.randint(1, 20)
         if x <10: 
@@ -228,7 +227,7 @@ class Soldier:
     def finishedlevel1(self): 
         print("You've successfully completed your mission in Lexington and Concord!")
         self.loading()
-        print("You're now ordered to take the land of Bunker's Hill")
+        print("You're now ordered to take the land of Bunker's Hill. To complete your mission, you must man 10 cannons and kill 20 patriots.")
         self.loading()
     def resetstats(self):
         self.hunger= 100
@@ -241,7 +240,7 @@ class Soldier:
     def finishedlevel2(self): 
         print("You've successfully completed your mission in Bunker's Hill!")
         self.loading()
-        print("The Battle of Saratoga is about to commence. Win the battle.")
+        print("The Battle of Saratoga is about to commence. Win the battle by holding 4 positions and killing 30 patriots.")
     def usefood(self): 
         if self.hunger <= 70: 
             self.hunger +=30
@@ -285,6 +284,7 @@ class Soldier:
             if self.kills >= 6 and self.suppliescaptured >= 15: 
                 break
             self.dec()
+            print(f"{self.suppliescaptured} supplies captured")
             print(f"{self.shillings} shillings")
             print(f"{self.kills} kills")
             Userinput = input(f"What would you like to do, {self.name}? Loot and plunder, find supplies, or find patriots?")
@@ -302,26 +302,36 @@ class Soldier:
             elif "shop" in Userinput: 
                 self.shopping()
             elif "use food" in Userinput: 
-                self.usefood()
-                self.loading()
+                if self.food>=1: 
+                    self.usefood()
+                    self.loading()
+                elif self.food ==0: 
+                    print("This item is not in your inventory")
+                    self.loading()
             elif "use bandages" in Userinput: 
-                self.usebandages()
-                self.loading()
+                if self.bandages >=1: 
+                    self.usebandages()
+                    self.loading()
+                elif self.bandages ==0: 
+                    print("This item is not in your inventory")
+                    self.loading()
             else: 
                 print("Invalid command")
+                self.byebye()
                 self.loading()
     def level2(self): 
         while True: 
             if self.health <= 0: 
                 break
-            if self.kills >= 20 and self.shots >= 15: 
+            if self.kills >= 20 and self.shots >= 10: 
                 break
             self.dec()
+            print(f"{self.shots} cannons manned")
             print(f"{self.shillings} shillings")
             print(f"{self.kills} kills")
-            Userinput2 = input(f"What would you like to do, sir? Man the canons, bayonet charge, or find patriots?")
+            Userinput2 = input(f"What would you like to do, sir? Man the cannons, bayonet charge, or find patriots?")
             Userinput2 =Userinput2.lower()
-            if "man the canons" in Userinput2: 
+            if "man the cannons" in Userinput2: 
                 self.loading()
                 self.manthecanons()
             elif "find patriots" in Userinput2: 
@@ -334,13 +344,22 @@ class Soldier:
             elif "shop" in Userinput2: 
                 self.shopping()
             elif "use food" in Userinput2: 
-                self.usefood()
-                self.loading()
+                if self.food>=1: 
+                    self.usefood()
+                    self.loading()
+                elif self.food ==0: 
+                    print("This item is not in your inventory")
+                    self.loading()
             elif "use bandages" in Userinput2: 
-                self.usebandages()
-                self.loading()
+                if self.bandages >=1: 
+                    self.usebandages()
+                    self.loading()
+                elif self.bandages ==0: 
+                    print("This item is not in your inventory")
+                    self.loading()
             else: 
                 print("Invalid command")
+                self.byebye()
                 self.loading()
     def level3(self): 
         while True: 
@@ -349,6 +368,7 @@ class Soldier:
             if self.kills >= 30 and self.positionsheld >= 4: 
                 break
             self.dec()
+            print(f"{self.positionsheld} positions held")
             print(f"{self.shillings} shillings")
             print(f"{self.kills} kills")
             Userinput3 = input(f"What would you like to do? Kill patriots, bayonet charge, or hold position?")
@@ -366,13 +386,22 @@ class Soldier:
             elif "shop" in Userinput3: 
                 self.shopping()
             elif "use food" in Userinput3: 
-                self.usefood()
-                self.loading()
+                if self.food>=1: 
+                    self.usefood()
+                    self.loading()
+                elif self.food ==0: 
+                    print("This item is not in your inventory")
+                    self.loading()
             elif "use bandages" in Userinput3: 
-                self.usebandages()
-                self.loading()
+                if self.bandages >=1: 
+                    self.usebandages()
+                    self.loading()
+                elif self.bandages ==0: 
+                    print("This item is not in your inventory")
+                    self.loading()
             else: 
                 print("Invalid command")
+                self.byebye()
                 self.loading()
 
 
@@ -383,7 +412,7 @@ print("You sign up for the British army as a loyalist in 1775 and immediately ar
 Name = input("What do you call yourself, sir?")
 character = Soldier(Name)
 character.resetstats()
-print("You're told to stop the patriots at Lexington and Concord by your commander.")
+print("You're told to stop the patriots at Lexington and Concord by your commander. To complete your mission, you must kill 6 patriots and capture 15 supplies")
 
 while True: 
     if character.health <= 0: 
