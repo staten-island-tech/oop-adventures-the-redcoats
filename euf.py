@@ -216,7 +216,7 @@ class Soldier:
     def charge(self): 
         self.byebye()
         print("The officer has commanded a charge! Give 'em hell boys!")
-        x = random.randint(1,20)
+        x = random.randint(6,20)
         print(f"You were able to charge and kill {x} patriots! But you're so exhausted from the adrenaline...")
         self.loading()
         self.byebye()
