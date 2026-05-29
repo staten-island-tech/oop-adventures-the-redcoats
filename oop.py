@@ -270,7 +270,9 @@ class Soldier:
     def finishedlevel3(self): 
         print("You've completed your mission...but so many lives were lost in the process...") 
         self.loading()
+        print("Yorktown is going to be sieged by the Patriots! Defend Yorktown!")
     def level1(self): 
+        print("You're told to stop the patriots at Lexington and Concord by your commander.")
         while True: 
             if self.health <= 0: 
                 break
@@ -360,7 +362,7 @@ class Soldier:
         while True: 
             if self.health <= 0: 
                 break
-            if self.kills >= 50 and self.positionsheld >= 4: 
+            if self.kills >= 40 and self.positionsheld >= 6: 
                 break
             self.dec()
             print(f"{self.shillings} shillings")
@@ -368,7 +370,7 @@ class Soldier:
             print(f"{self.food} food")
             print(f"{self.bandages} bandages")
             Userinput3 = input(f"What would you like to do? Kill patriots, bayonet charge, or hold position?")
-            Userinput3 =Userinput3.lower()
+            Userinput3 = Userinput3.lower()
             if "hold position" in Userinput3: 
                 self.loading()
                 self.holdposition()
@@ -451,93 +453,17 @@ class Soldier:
             else: 
                 print("Invalid command")
                 self.loading()
-
     def finishedlevel4(self):
         print("You've successfully defended Yorktown!")
         character.loading()
-
-print("You sign up for the British army as a loyalist in 1775 and immediately are enlisted in preventing the revolt of the current colonists in America")
-
-
-Name = input("What do you call yourself, sir?")
-character = Soldier(Name)
-character.resetstats()
-
-while True: 
-    print("You're told to stop the patriots at Lexington and Concord by your commander.")
-    if character.health <= 0: 
-        break
-    if character.kills >= 6 and character.suppliescaptured >= 15: 
-        character.finishedlevel1()
-        break
-    level1 = input("Write 'play' to begin the level.")
-    if level1 == "play": 
-        character.loading()
-        character.resetstats()
-        character.level1()
-    else: 
-        print("Invalid command.")  
-
-
-while True: 
-    if character.health <= 0: 
-        break
-    if character.kills >= 30 and character.shots >= 6: 
-        character.finishedlevel2()
-        break
-    level2 = input("Write 'play' to begin the level.")
-    if level2 == "play": 
-        character.resetstats()
-        print("You've recovered from battle...")
-        character.loading()
-        character.level2()
-    else: 
-        print("Invalid command.")  
-        
-while True: 
-    if character.health <= 0: 
-        character.loading()
-        character.death()
-        break
-    if character.kills >= 30 and character.positionsheld >= 6: 
-        character.finishedlevel3()
-        break
-    level3 = input("Write 'play' to begin the level.")
-    if level3 == "play": 
-        character.resetstats()
-        print("You've recovered from battle...")
-        character.loading()
-        character.level3()
-    else: 
-        print("Invalid command.")  
-
-while True: 
-    print("Yorktown is going to be sieged by the Patriots! Defend Yorktown!")
-    if character.health <= 0: 
-        break
-    if character.kills >= 50: 
-        character.finishedlevel4()
-        break
-    level4 = input("Write 'play' to begin the level.")
-    if level4 == "play": 
-        character.loading()
-        character.resetstats()
-        character.level4()
-    else: 
-        print("Invalid command.") 
-
-
-while True:
-    the_end = input("Type 'play' to continue playing")
-    if the_end == "play":
-        character.loading()
-        print("Another day, another battle.")
-        character.loading()
-        print("However, this morning you woke up with a bad feeling in your stomach...")
-        character.loading()
-        character.loading()
-        ending = input("You're now in the middle of a fight against a Patriot! Are you willing to do whatever it takes to survive?")
-        if ending == "yes":
+    def ending(self):
+            character.loading()
+            print("Another day, another battle.")
+            character.loading()
+            print("However, this morning you woke up with a bad feeling in your stomach...")
+            character.loading()
+            character.loading()
+    def endingyes(self):
             print("You pull out your musket and point it straight towards your opponent...")
             character.loading()
             print("You are about to pull the trigger, but suddenly... an immense pain explodes across your body...")
@@ -557,8 +483,7 @@ while True:
             character.loading()
             print("You're family in Britain receives a letter about your death...their little boy is gone.")
             print("This is the end of the game! Thank you for playing!")
-            break
-        elif ending == "no":
+    def endingno(self):
             character.loading()
             print("You surrender to the Patriot...")
             character.loading()
@@ -568,5 +493,94 @@ while True:
             character.loading()
             character.loading()
             print("A messenger in Britain visits your family...you're missing in action...and forever will be.")
-            print("This is the end of the game! Thank you for playing!")
-            break
+            print("This is the end of the game! Thank you for playing!")  
+        
+
+print("You sign up for the British army as a loyalist in 1775 and immediately are enlisted in preventing the revolt of the current colonists in America")
+
+
+Name = input("What do you call yourself, sir?")
+character = Soldier(Name)
+character.resetstats()
+
+while True: 
+    if character.health <= 0:
+        character.loading()
+        character.death() 
+        break
+    if character.kills >= 6 and character.suppliescaptured >= 15: 
+        character.finishedlevel1()
+        break
+    level1 = input("Write 'play' to begin the level.")
+    if level1 == "play": 
+        character.loading()
+        character.resetstats()
+        character.level1()
+    else: 
+        print("Invalid command.")  
+
+
+while True: 
+    if character.health <= 0: 
+        character.loading()
+        character.death()
+        break
+    if character.kills >= 30 and character.shots >= 15: 
+        character.finishedlevel2()
+        break
+    level2 = input("Write 'play' to begin the level.")
+    if level2 == "play": 
+        character.resetstats()
+        print("You've recovered from battle...")
+        character.loading()
+        character.level2()
+    else: 
+        print("Invalid command.")  
+        
+while True: 
+    if character.health <= 0: 
+        character.loading()
+        character.death()
+        break
+    if character.kills >= 40 and character.positionsheld >= 6: 
+        character.finishedlevel3()
+        break
+    level3 = input("Write 'play' to begin the level.")
+    if level3 == "play": 
+        character.resetstats()
+        print("You've recovered from battle...")
+        character.loading()
+        character.level3()
+    else: 
+        print("Invalid command.")  
+
+while True: 
+    if character.health <= 0: 
+        character.loading()
+        character.death()
+        break
+    if character.kills >= 50: 
+        character.finishedlevel4()
+        break
+    level4 = input("Write 'play' to begin the level.")
+    if level4 == "play": 
+        character.loading()
+        character.resetstats()
+        character.level4()
+    else: 
+        print("Invalid command.") 
+
+
+while True:
+    if character.health <= 0:
+        break
+    the_end = input("Type 'play' to continue playing")
+    if the_end == "play":
+        character.ending()
+    response = input("You're now in the middle of a fight against a Patriot! Are you willing to do whatever it takes to survive?")
+    if response == "yes":
+        character.endingyes()
+        break
+    if response == "no":
+        character.endingno()
+        break
