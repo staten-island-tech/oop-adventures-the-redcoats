@@ -432,7 +432,7 @@ while True:
 while True: 
     if character.health <= 0: 
         break
-    if character.kills >= 20 and character.shots >= 8: 
+    if character.kills >= 20 and character.shots >= 10: 
         character.finishedlevel2()
         break
     level2 = input("Write 'play' to begin the level.")
@@ -449,7 +449,7 @@ while True:
         character.loading()
         character.death()
         break
-    if character.kills >= 30 and character.positionsheld >= 6: 
+    if character.kills >= 30 and character.positionsheld >= 4: 
         character.finishedlevel3()
         break
     level3 = input("Write 'play' to begin the level.")
