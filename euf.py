@@ -181,8 +181,7 @@ class Soldier:
                 self.loading()
         elif self.ammo == 0: 
             self.loading()
-            print("You have no ammo...they shot you before you could react")
-            self.byebye()
+            print("You have no ammo...they shot you before you could react") 
             self.damage()
     def lootandplunder(self): 
         print("You start looting the dead bodies of fallen comrades and enemies.")
