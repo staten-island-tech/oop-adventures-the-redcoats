@@ -319,7 +319,7 @@ class Soldier:
         while True: 
             if self.health <= 0: 
                 break
-            if self.kills >= 30 and self.shots >= 15: 
+            if self.kills >= 30 and self.shots >= 6: 
                 break
             self.dec()
             print(f"{self.shillings} shillings")
@@ -406,11 +406,12 @@ class Soldier:
         x = random.randint(1, 20)
         if x <6: 
             print("You crouch behind a bush...like the coward you are!")
+            self.health += 10
             character.loading()
         elif x >= 6: 
-            print("You were caught trying to hide, you coward!")
+            print("You were caught trying to hide, you coward!") 
+            self.damage()
             character.loading()
-            self.fun -= 10 
     def level4(self):
         while True: 
             if self.health <= 0: 
@@ -518,14 +519,14 @@ while True:
         character.level1()
     else: 
         print("Invalid command.")  
-
+    break
 
 while True: 
     if character.health <= 0: 
         character.loading()
         character.death()
         break
-    if character.kills >= 30 and character.shots >= 15: 
+    if character.kills >= 30 and character.shots >= 6: 
         character.finishedlevel2()
         break
     level2 = input("Write 'play' to begin the level.")
@@ -536,6 +537,7 @@ while True:
         character.level2()
     else: 
         print("Invalid command.")  
+    break
         
 while True: 
     if character.health <= 0: 
@@ -553,6 +555,7 @@ while True:
         character.level3()
     else: 
         print("Invalid command.")  
+    break
 
 while True: 
     if character.health <= 0: 
@@ -569,7 +572,7 @@ while True:
         character.level4()
     else: 
         print("Invalid command.") 
-
+    break
 
 while True:
     if character.health <= 0:
@@ -584,3 +587,4 @@ while True:
     if response == "no":
         character.endingno()
         break
+    break
