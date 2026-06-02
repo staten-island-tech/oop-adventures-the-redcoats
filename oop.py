@@ -48,11 +48,14 @@ class Soldier:
                 elif self.sabre == 1: 
                     print("You have already bought this")
             elif "ammo" in RESPONSE: 
-                if self.shillings >= 2: 
-                    print("You've purchased 5 ammo!") 
-                    self.ammo += 5
-                elif self.shillings <2: 
-                    print("My apologies...you don't have the expense to buy it...")
+                if self.ammo <= 5:
+                    if self.shillings >= 2: 
+                        print("You've purchased 5 ammo!") 
+                        self.ammo += 5
+                    elif self.shillings < 2: 
+                        print("My apologies...you don't have the expense to buy it...")
+                elif self.ammo > 5:
+                    print("You do not need more ammo yet.")
             elif "done" in RESPONSE: 
                 print("Thank you for visiting!") 
                 self.loading()
@@ -181,7 +184,7 @@ class Soldier:
         self.loading()
         self.byebye()
         x = random.randint(1, 20)
-        if x < 10: 
+        if x < 10:
             print("You've found some money!")
             self.find()
             self.loading()
@@ -586,5 +589,13 @@ while True:
         break
     if response == "no":
         character.endingno()
+        break
+    elif response == "let's kiss": 
+        print("You guys start making out aggressively and flee the battlefield, isolating yourselves in a small cabin in the woods to happily live the rest of your lives.")
+        print("It turns out the soldier is actually a girl and you guys have 10 kids and die in your 90s.")
+        print("However, you guys are also wanted for high treason against both the United States and England so your children get captured and DIE by PUBLIC HANGING. The End :D")
+        break
+    elif response == "Why are there rats": 
+        print("OH MY DAYS WHY ARE THERE EVIL RATS INVADING OH NO THEY TAKE OVER THE WORLD IT'S EVIL RAT PLANET NOW WE'RE ALL BALDDDDD")
         break
     break
