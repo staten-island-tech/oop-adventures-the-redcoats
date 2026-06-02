@@ -54,12 +54,15 @@ class Soldier:
                     self.loading()
                     print("You have already bought this")
             elif "ammo" in RESPONSE: 
-                if self.shillings >= 2: 
-                    self.loading()
-                    print("You've purchased 5 ammo!") 
-                    self.ammo += 5
-                elif self.shillings <2: 
-                    print("My apologies...you don't have the expense to buy it...")
+                if self.ammo <=5: 
+                    if self.shillings >= 2: 
+                        self.loading()
+                        print("You've purchased 5 ammo!") 
+                        self.ammo += 5
+                    elif self.shillings <2: 
+                        print("My apologies...you don't have the expense to buy it...")
+                elif self.ammo >5: 
+                    print("You do not need more ammo yet.")
             elif "done" in RESPONSE: 
                 self.loading()
                 print("Thank you for visiting!") 
