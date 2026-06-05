@@ -73,8 +73,8 @@ class Soldier:
     
     def loading(self): 
         print(".")
-        print(". .")
-        print(". . .")
+        print(".   .")
+        print(".   .   .")
     def byebye(self): 
         self.fun -= 2
         self.hunger -= 5
@@ -102,8 +102,6 @@ class Soldier:
         self.ammo -= 1
     def killedsomething(self): 
         self.fun+=20
-        if self.fun>=100: 
-            self.fun == 100
     def damage(self): 
         self.hunger -=5
         self.health -=10
@@ -238,7 +236,6 @@ class Soldier:
         self.ammo= 10
         self.shots= 0
         self.kills = 0
-        self.loading()
     def finishedlevel2(self): 
         print("You've successfully completed your mission in Bunker's Hill!")
         self.loading()
@@ -282,6 +279,7 @@ class Soldier:
     def level1(self): 
         while True: 
             if self.health <= 0: 
+                self.health==0
                 break
             if self.kills >= 6 and self.suppliescaptured >= 15: 
                 break
@@ -324,6 +322,7 @@ class Soldier:
     def level2(self): 
         while True: 
             if self.health <= 0: 
+                self.health==0
                 break
             if self.kills >= 20 and self.shots >= 10: 
                 break
@@ -366,6 +365,7 @@ class Soldier:
     def level3(self): 
         while True: 
             if self.health <= 0: 
+                self.health == 0
                 break
             if self.kills >= 30 and self.positionsheld >= 4: 
                 break
@@ -423,6 +423,7 @@ while True:
         character.finishedlevel1()
         break
     level1 = input("Write 'play' to begin the level.")
+    level1=level1.lower()
     if level1 == "play": 
         character.loading()
         character.resetstats()
@@ -438,6 +439,7 @@ while True:
         character.finishedlevel2()
         break
     level2 = input("Write 'play' to begin the level.")
+    level2=level2.lower()
     if level2 == "play": 
         character.resetstats()
         print("You've recovered from battle...")
@@ -455,6 +457,7 @@ while True:
         character.finishedlevel3()
         break
     level3 = input("Write 'play' to begin the level.")
+    level3=level3.lower()
     if level3 == "play": 
         character.resetstats()
         print("You've recovered from battle...")
