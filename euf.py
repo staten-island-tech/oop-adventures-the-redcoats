@@ -261,7 +261,6 @@ class Soldier:
             print("You're health is fine, no need to heal")
     def holdposition(self): 
         print("Hold your formation! Hold steady lads!") 
-        self.loading()
         self.byebye()
         x = random.randint(1,20)
         if x >10: 
