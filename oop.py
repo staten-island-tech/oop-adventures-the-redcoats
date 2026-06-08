@@ -114,6 +114,7 @@ class Soldier:
         self.suppliescaptured += 5
         self.fun += 20
     def death(self): 
+        self.health == 0
         print("You have died and failed your mission...")
         self.sabre == 0
         self.living == False
@@ -196,7 +197,7 @@ class Soldier:
             print("You've found nothing...")
             self.byebye()
             self.loading()
-    def manthecanons(self): 
+    def manthecannons(self): 
         self.byebye()
         print("You're ordered to help with artillery strikes") 
         x = random.randint(1,20)
@@ -277,6 +278,7 @@ class Soldier:
     def finishedlevel3(self): 
         print("You've completed your mission...but so many lives were lost in the process...") 
         self.loading()
+        print("Yorktown is going to be sieged by Patriots! Defend Yorktown by killing 50 patriots.")
     def level1(self): 
         while True: 
             if self.health <= 0: 
@@ -333,7 +335,7 @@ class Soldier:
             Userinput2 =Userinput2.lower()
             if "man the cannons" in Userinput2: 
                 self.loading()
-                self.manthecanons()
+                self.manthecannons()
             elif "find patriots" in Userinput2: 
                 e = random.randint(0, 5)
                 self.loading()
@@ -406,8 +408,8 @@ class Soldier:
     def hide(self):
         print("You look for a place to hide...") 
         character.byebye()
-        x = random.randint(1, 20)
-        if x <6: 
+        x = random.randint(1, 10)
+        if x < 6: 
             print("You crouch behind a bush...like the coward you are!")
             self.health += 10
             character.loading()
@@ -509,8 +511,6 @@ character.resetstats()
 
 while True: 
     if character.health <= 0: 
-        character.loading()
-        character.death()
         break
     if character.kills >= 6 and character.suppliescaptured >= 15: 
         character.finishedlevel1()
@@ -523,11 +523,8 @@ while True:
     else: 
         print("Invalid command.")  
 
-
 while True: 
     if character.health <= 0: 
-        character.loading()
-        character.death()
         break
     if character.kills >= 20 and character.shots >= 10: 
         character.finishedlevel2()
@@ -540,11 +537,9 @@ while True:
         character.level2()
     else: 
         print("Invalid command.")  
-        
+
 while True: 
     if character.health <= 0: 
-        character.loading()
-        character.death()
         break
     if character.kills >= 30 and character.positionsheld >= 4: 
         character.finishedlevel3()
@@ -558,10 +553,9 @@ while True:
     else: 
         print("Invalid command.") 
 
+
 while True: 
     if character.health <= 0: 
-        character.loading()
-        character.death()
         break
     if character.kills >= 50: 
         character.finishedlevel4()
@@ -573,10 +567,11 @@ while True:
         character.level4()
     else: 
         print("Invalid command.") 
-    break
 
 while True:
     if character.health <= 0:
+        character.loading()
+        character.death()
         break
     the_end = input("Type 'play' to continue playing")
     if the_end == "play":
