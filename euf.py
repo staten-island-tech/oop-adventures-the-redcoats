@@ -409,12 +409,106 @@ class Soldier:
                 print("Invalid command")
                 self.byebye()
                 self.loading()
+    def hide(self):
+        print("You look for a place to hide...") 
+        character.byebye()
+        x = random.randint(1, 20)
+        if x < 10: 
+            print("You crouch behind a bush...like the coward you are!")
+            self.health += 30
+            character.loading()
+        elif x >= 10: 
+            print("You were caught trying to hide, you coward!") 
+            self.damage()
+            character.loading()
+    def level4(self):
+        while True: 
+            if self.health <= 0: 
+                break
+            if self.kills >= 50:
+                break
+            self.dec()
+            print(f"{self.shillings} shillings")
+            print(f"{self.kills} kills")
+            print(f"{self.food} food")
+            print(f"{self.bandages} bandages")
+            Userinput4 = input(f"What would you like to do? Kill patriots, bayonet charge, or hide...")
+            Userinput4 = Userinput4.lower()
+            if "kill patriots" in Userinput4: 
+                e = random.randint(0, 5)
+                self.loading()
+                self.findpatriots(e)
+            elif "bayonet charge" in Userinput4:
+                self.loading()
+                self.charge()
+            elif "shop" in Userinput4: 
+                self.shopping()
+            elif "use food" in Userinput4: 
+                if self.food >= 1:
+                    self.usefood()
+                    self.loading()
+                elif self.food == 0:
+                    print("This item is not in your inventory")
+                    self.loading()
+            elif "use bandages" in Userinput4: 
+                if self.bandages >= 1:
+                    self.usebandages()
+                    self.loading()
+                elif self.bandages == 0:
+                    print("This item is not in your inventory")
+                    self.loading()
+            elif "hide" in Userinput4:
+                self.hide()
+                self.loading()
+            else: 
+                print("Invalid command")
+                self.loading()
+    def finishedlevel4(self):
+        print("You've successfully defended Yorktown!")
+        character.loading()
+    def ending(self):
+            character.loading()
+            print("Another day, another battle.")
+            character.loading()
+            print("However, this morning you woke up with a bad feeling in your stomach...")
+            character.loading()
+            character.loading()
+    def endingyes(self):
+            print("You pull out your musket and point it straight towards your opponent...")
+            character.loading()
+            print("You are about to pull the trigger, but suddenly... an immense pain explodes across your body...")
+            character.loading()
+            print("You've just been brutally shot...")
+            character.loading()
+            print("You fall to the ground...the bullet's force had knocked the breath out of you...")
+            character.loading()
+            print("You cough up blood...you try to scream, call for help...but the words don't come out...")
+            character.loading()
+            print("You feel your life slowly fading away...but you see this warm, welcoming light...inviting you to come towards it...")
+            character.loading()
+            print("You were able to fight against men, but it is simply impossible to defeat death...")
+            character.loading()
+            print("You died a death only a brave soldier is worthy of...was it worth it?")
+            character.loading()
+            character.loading()
+            print("You're family in Britain receives a letter about your death...their little boy is gone.")
+            print("This is the end of the game! Thank you for playing!")
+    def endingno(self):
+            character.loading()
+            print("You surrender to the Patriot...")
+            character.loading()
+            print("The Patriot captures you, bringing you back to their fort...")
+            character.loading()
+            print("You are now a prisoner of the Patriots...was it worth it?")
+            character.loading()
+            character.loading()
+            print("A messenger in Britain visits your family...you're missing in action...and forever will be.")
+            print("This is the end of the game! Thank you for playing!")  
 
 
 print("You sign up for the British army as a loyalist in 1775 and immediately are enlisted in preventing the revolt of the current colonists in America.")
 
         
-
 Name = input("What do you call yourself, sir?")
 character = Soldier(Name)
 character.resetstats()
@@ -469,3 +563,42 @@ while True:
         character.level3()
     else: 
         print("Invalid command.")  
+
+while True: 
+    if character.health <= 0: 
+        break
+    if character.kills >= 50: 
+        character.finishedlevel4()
+        break
+    level4 = input("Write 'play' to begin the level.")
+    if level4 == "play": 
+        character.loading()
+        character.resetstats()
+        character.level4()
+    else: 
+        print("Invalid command.") 
+
+while True:
+    if character.health <= 0:
+        character.loading()
+        character.death()
+        break
+    the_end = input("Type 'play' to continue playing")
+    if the_end == "play":
+        character.ending()
+    response = input("You're now in the middle of a fight against a Patriot! Are you willing to do whatever it takes to survive?")
+    if response == "yes":
+        character.endingyes()
+        break
+    if response == "no":
+        character.endingno()
+        break
+    elif response == "let's kiss": 
+        print("You guys start making out aggressively and flee the battlefield, isolating yourselves in a small cabin in the woods to happily live the rest of your lives.")
+        print("It turns out the soldier is actually a girl and you guys have 10 kids and die in your 90s.")
+        print("However, you guys are also wanted for high treason against both the United States and England so your children get captured and DIE by PUBLIC HANGING. The End :D")
+        break
+    elif response == "Why are there rats": 
+        print("OH MY DAYS WHY ARE THERE EVIL RATS INVADING OH NO THEY TAKE OVER THE WORLD IT'S EVIL RAT PLANET NOW WE'RE ALL BALDDDDD")
+        break
+    break
