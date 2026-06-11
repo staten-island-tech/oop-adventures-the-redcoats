@@ -158,6 +158,11 @@ class Soldier:
                 self.kills += e
                 self.shoot()
                 self.loading()
+        else: 
+            print("You missed your chance to shoot...and get shot instead...")
+            self.byebye()
+            self.damage()
+            self.loading()
     def findpatriots(self, e): 
         print("You run and try to find filthy rebels to kill")
         self.loading()
