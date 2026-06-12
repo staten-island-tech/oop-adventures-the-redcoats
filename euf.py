@@ -587,6 +587,7 @@ while True:
     if the_end == "play":
         character.ending()
     response = input("You're now in the middle of a fight against a Patriot! Are you willing to do whatever it takes to survive?")
+    response = response.lower()
     if response == "yes":
         character.endingyes()
         break
@@ -598,7 +599,7 @@ while True:
         print("It turns out the soldier is actually a girl and you guys have 10 kids and die in your 90s.")
         print("However, you guys are also wanted for high treason against both the United States and England so your children get captured and DIE by PUBLIC HANGING. The End :D")
         break
-    elif response == "Why are there rats": 
+    elif response == "why are there rats": 
         print("OH MY DAYS WHY ARE THERE EVIL RATS INVADING OH NO THEY TAKE OVER THE WORLD IT'S EVIL RAT PLANET NOW WE'RE ALL BALDDDDD")
         break
     break
