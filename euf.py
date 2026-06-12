@@ -548,8 +548,6 @@ while True:
         
 while True: 
     if character.health <= 0: 
-        character.loading()
-        character.death()
         break
     if character.kills >= 30 and character.positionsheld >= 4: 
         character.finishedlevel3()
