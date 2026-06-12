@@ -412,12 +412,12 @@ class Soldier:
     def hide(self):
         print("You look for a place to hide...") 
         character.byebye()
-        x = random.randint(1, 20)
-        if x < 10: 
+        x = random.randint(1, 10)
+        if x < 5: 
             print("You crouch behind a bush...like the coward you are!")
             self.health += 30
             character.loading()
-        elif x >= 10: 
+        elif x >= 5: 
             print("You were caught trying to hide, you coward!") 
             self.damage()
             character.loading()
