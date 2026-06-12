@@ -594,6 +594,7 @@ while True:
         break
     elif response == "let's kiss": 
         print("You guys start making out aggressively and flee the battlefield, isolating yourselves in a small cabin in the woods to happily live the rest of your lives.")
+        character.loading()
         print("It turns out the soldier is actually a girl and you guys have 10 kids and die in your 90s.")
         print("However, you guys are also wanted for high treason against both the United States and England so your children get captured and DIE by PUBLIC HANGING. The End :D")
         break
